@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="gedit编辑器gedit是一个Linux环境下的文本编辑器，类似windows下的写字板程序，在不需要特别复杂的编程环境下，作为基本的文本编辑器比较合适。  sublime编辑器Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用） 。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑器和服务器">
+<meta property="og:url" content="http://simplecoder.cn/2018/06/21/编辑器和服务器/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="gedit编辑器gedit是一个Linux环境下的文本编辑器，类似windows下的写字板程序，在不需要特别复杂的编程环境下，作为基本的文本编辑器比较合适。  sublime编辑器Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用） 。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsiussiigzj30o10c1wim.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fsiv7mcvk6j30nz0ab0tv.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsix4bh2wzj30nz0cu0we.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsix4svnllj30nz0cu0vj.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsix5dbsz0j30nz0cuafb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fsix5yojd1j30nz0cun2k.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsix78at0rj30o00gj45f.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsixeh9jsbj30o00gj45f.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fsixgifzy6j30o00gjqdh.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsixgtz6vzj30o10gpgrl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fsixiipjm4j30o00g6gpu.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsixj3ddhzj30o00g6woi.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsixjoklb5j30o00fzdqw.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsixmui1ijj30o00ftdqg.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsixrv358sj30nz0ioago.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fsixtdi6ggj30nz02f3z2.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fsixtshwefj30o003lgn9.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsixx3hceyj30o10en77i.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsixzpwehaj30ij0bcq4u.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fsiy1sdthoj30o00etq5z.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fsiy37tjznj30dl06fjrp.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiy4ucgw5j30o00gqjua.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsiyc7j2hbj30o10ktq6k.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsiyco3zbij30o10iz0xy.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsiyi1yhuvj30o10c414k.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fsiymz47qyj30nd08ljsb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fsiyq300e6j30o10fktgx.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiys665rtj30o00egdna.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fsiyw1ghmbj30o10ksgwu.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsiyydnrbuj30o10ehwi1.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fsiyytzkb3j30o10f8gnt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fsiz00uxy8j30o10hydqw.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiz0uqr40j30o00ehgp7.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiz24xxbaj30o00f2tcv.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fsiz4rjsdej30lu0gwq5p.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fsiz9iwgfwj30o10gudje.jpg">
+<meta property="og:updated_time" content="2018-06-21T10:34:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑器和服务器">
+<meta name="twitter:description" content="gedit编辑器gedit是一个Linux环境下的文本编辑器，类似windows下的写字板程序，在不需要特别复杂的编程环境下，作为基本的文本编辑器比较合适。  sublime编辑器Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用） 。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsiussiigzj30o10c1wim.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simplecoder.cn/2018/06/21/编辑器和服务器/">
+
+
+
+
+
+  <title>编辑器和服务器 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simplecoder.cn/2018/06/21/编辑器和服务器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编辑器和服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T10:14:33+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习总结/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gedit编辑器"><a href="#gedit编辑器" class="headerlink" title="gedit编辑器"></a>gedit编辑器</h1><p>gedit是一个Linux环境下的文本编辑器，类似windows下的写字板程序，在不需要特别复杂的编程环境下，作为基本的文本编辑器比较合适。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fsiussiigzj30o10c1wim.jpg" alt="图片 1"></p>
+<h1 id="sublime编辑器"><a href="#sublime编辑器" class="headerlink" title="sublime编辑器"></a>sublime编辑器</h1><p>Sublime Text 是一个代码编辑器（Sublime Text 2是收费软件，但可以无限期试用） 。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。 具有漂亮的用户界面和强大的功能，例如代码缩略图，Python的插件，代码段等。还可自定义键绑定，菜单和工具栏。Sublime Text 的主要功能包括：拼写检查，书签，完整的 Python API ， Goto 功能，即时项目切换，多选择，多窗口等等。Sublime Text 是一个跨平台的编辑器，同时支持Windows、Linux、Mac OS X等操作系统。</p>
+<h2 id="常用命令介绍"><a href="#常用命令介绍" class="headerlink" title="常用命令介绍"></a>常用命令介绍</h2><ul>
+<li>保存后从圆点编程叉，这样才是保存成功，保存命令：Ctrl + s</li>
+<li>缩进按tab键，回退回来shift + tab</li>
+<li>替换内容：选中要替换的内容ctrl+d输入你要修改的内容</li>
+<li>Ctrl +  enter   光标所在行的下一行插入新行</li>
+<li>Ctrl + shift  + enter  光标所在行的上一行插入新行</li>
+<li>Ctrl  +  left/right    向左右单位性移动光标</li>
+<li>shift +  up/down   选中多行</li>
+<li>Ctrl  +  /  将光标所在行注释</li>
+<li>Ctrl  +  shift  +  /  多行注释</li>
+<li>Ctrl  +  ku   将选中处换为大写</li>
+<li>Ctrl  +  kl   将选中处换为小写</li>
+<li>Ctrl  +  Z  撤销</li>
+<li>Ctrl  +  F  查找关键字</li>
+<li>Ctrl  +  G 查找某行</li>
+<li>Ctrl   +  M   光标移到括号内容的头或尾处</li>
+<li>Ctrl+Shift+K 删除整行。</li>
+</ul>
+<h1 id="编辑器之神-vim"><a href="#编辑器之神-vim" class="headerlink" title="编辑器之神 -vim"></a>编辑器之神 -vim</h1><h2 id="vi简介"><a href="#vi简介" class="headerlink" title="vi简介"></a>vi简介</h2><p>vi是“Visual interface”的简称，它在Linux上的地位就仿佛Edit程序在DOS上一样。它可以执行输出、删除、查找、替换、块操作等众多文本操作，而且用户可以根据自己的需要对其进行定制。Vi不是一个排版程序，它不象Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。</p>
+<p>三种工作模式：</p>
+<blockquote>
+<p> 命令模式</p>
+<p>文本输入模式</p>
+<p>末行模式</p>
+</blockquote>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fsiv7mcvk6j30nz0ab0tv.jpg" alt="图片 1"></p>
+<h2 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h2><p>任何时候，不管用户处于何种模式，只要按一下ESC键，即可使Vi进入命令模式；我们在shell环境(提示符为$)下输入启动Vi命令，进入编辑器时，也是处于该模式下。在该模式下，用户可以输入各种合法的Vi命令，用于管理自己的文档。此时从键盘上输入的任何字符都被当做编辑命令来解释，若输入的字符是合法的Vi命令，则Vi在接受用户命令之后完成相应的动作。但需注意的是，所输入的命令并不在屏幕上显示出来。若输入的字符不是Vi的合法命令，Vi会响铃报警。</p>
+<h2 id="文本输入模式"><a href="#文本输入模式" class="headerlink" title="文本输入模式"></a>文本输入模式</h2><p>在命令模式下输入插入命令i、附加命令a 、打开命令o、修改命令c、取代命令r或替换命令s都可以进入文本输入模式。在该模式下，用户输入的任何字符都被Vi当做文件内容保存起来，并将其显示在屏幕上。在文本输入过程中，若想回到命令模式下，按键ESC即可。</p>
+<h2 id="末行模式"><a href="#末行模式" class="headerlink" title="末行模式"></a>末行模式</h2><p>末行模式也称ex转义模式。在命令模式下，用户按“:”键即可进入末行模式下，此时Vi会在显示窗口的最后一行(通常也是屏幕的最后一行)显示一个“:”作为末行模式的提示符，等待用户输入命令。多数文件管理命令都是在此模式下执行的(如把编辑缓冲区的内容写到文件中等)。末行命令执行完后，Vi自动回到命令模式。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:sp newfile</span><br></pre></td></tr></table></figure>
+<p>则分出一个窗口编辑newfile文件。如果要从命令模式转换到编辑模式，可以键入命令a或者i；如果需要从文本模式返回，则按Esc键即可。在命令模式下输入“:”即可切换到末行模式，然后输入命令。文件另存为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w newfile</span><br></pre></td></tr></table></figure>
+<p>文件另存为newfile，当然当前文件也在，编辑的时候就是编辑的当前文件。</p>
+<h2 id="vim基础操作"><a href="#vim基础操作" class="headerlink" title="vim基础操作"></a>vim基础操作</h2><p>vim是从 vi 发展出来的一个文本编辑器 。代码补完、编译及错误跳转等方便编程的功能特别丰富。Vi与vim的关系，它们都是多模式编辑器，不同的是vim 是vi的升级版本，它不仅兼容vi的所有指令，而且还有一些新的特性在里面</p>
+<h3 id="进入插入模式：ESC"><a href="#进入插入模式：ESC" class="headerlink" title="进入插入模式：ESC"></a>进入插入模式：ESC</h3><p>ESC：从插入模式或者末行模式进入命令模式</p>
+<p>移动光标：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">h: 左移 </span><br><span class="line">j: 下移 </span><br><span class="line">k: 上移 </span><br><span class="line">l: 右移</span><br><span class="line">M：光标移动到中间行，屏幕的中间行</span><br><span class="line">L: 光标移动到屏幕最后一行行首 </span><br><span class="line">G: 移动到指定行,行号shift+g,例如：定位到第<span class="number">10</span>行：第一步<span class="number">10</span>，第二步shift+g</span><br><span class="line">如果shift+g:直接到文件最后一行行首</span><br><span class="line">w: 向后一次移动一个字 </span><br><span class="line">b: 向前一次移动一个字</span><br><span class="line">gg: 光标移动文件开头 </span><br><span class="line">G: 光标移动到文件末尾</span><br></pre></td></tr></table></figure>
+<p>翻屏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ctr-d: 向下翻半屏 </span><br><span class="line">Ctr-u: 向上翻半屏</span><br><span class="line">Ctr-f: 向下翻一屏 </span><br><span class="line">Ctr-b: 向上翻一屏</span><br></pre></td></tr></table></figure>
+<h3 id="删除剪切命令"><a href="#删除剪切命令" class="headerlink" title="删除剪切命令"></a>删除剪切命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x: 删除光标后一个字符,相当于 Del </span><br><span class="line">X: 删除光标前一个字符,相当于 Backspace</span><br><span class="line">dd: 删除光标所在行,</span><br><span class="line">n dd 删除指定的行数 ，如果加上p就是剪切了</span><br><span class="line">D: 删除光标后本行所有内容,包含光标所在字符 </span><br><span class="line">d0: 删除光标前本行所有内容,不包含光标所在字符</span><br><span class="line">dw: 删除光标开始位置的字,包含光标所在字符</span><br></pre></td></tr></table></figure>
+<h3 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u: 一步一步撤销 </span><br><span class="line">Ctr-r: 反撤销</span><br></pre></td></tr></table></figure>
+<h3 id="文本行移动"><a href="#文本行移动" class="headerlink" title="文本行移动"></a>文本行移动</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;: 文本行右移 </span><br><span class="line">&lt;&lt;: 文本行左移</span><br><span class="line">.：重复上一次操作的命令</span><br></pre></td></tr></table></figure>
+<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yy：复制当前行，n yy：复制n行</span><br><span class="line">p：在光标所在的位置向下开辟新的一行，粘贴</span><br></pre></td></tr></table></figure>
+<h3 id="可视模式"><a href="#可视模式" class="headerlink" title="可视模式"></a>可视模式</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v: 按字符移动,选中文本 </span><br><span class="line">V: 按行移动,选中文本可视模式可以配合 d, y, &gt;&gt;, &lt;&lt; 实现对文本块的删除,复制,左右移动</span><br></pre></td></tr></table></figure>
+<h3 id="替换操作"><a href="#替换操作" class="headerlink" title="替换操作"></a>替换操作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r：替换当前字符</span><br><span class="line">R：替换当前字符，然后光标往后一个字符停留</span><br></pre></td></tr></table></figure>
+<h3 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/：str查找</span><br><span class="line">n：下一个</span><br><span class="line">N：上一个</span><br></pre></td></tr></table></figure>
+<h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a>替换命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">把abc全部替换成123：</span><br><span class="line">1、进入末行模式：shift+：</span><br><span class="line">2、末行模式下，将光标所在行的abc替换成123：%s/abc/123/g</span><br><span class="line">3、末行模式下，将第1行至第10行之间的abc替换成123：1,10s/abc/123/g</span><br></pre></td></tr></table></figure>
+<h3 id="保存并退出的三种方式"><a href="#保存并退出的三种方式" class="headerlink" title="保存并退出的三种方式"></a>保存并退出的三种方式</h3><ul>
+<li>末行模式下：:x </li>
+<li>末行模式下：:wq保存并且退出 </li>
+<li>命令模式下：Shift+zz,（说明，这个键容易变成中英文输入法切换，要注意） </li>
+</ul>
+<h1 id="ubuntu软件安装与卸载"><a href="#ubuntu软件安装与卸载" class="headerlink" title="ubuntu软件安装与卸载"></a>ubuntu软件安装与卸载</h1><h2 id="更新Ubuntu软件下载地址"><a href="#更新Ubuntu软件下载地址" class="headerlink" title="更新Ubuntu软件下载地址"></a>更新Ubuntu软件下载地址</h2><ol>
+<li><p>寻找国内镜像源：<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/</a> 。所谓的镜像源：可以理解为提供下载软件的地方，比如Android手机上可以下载软件的安卓市场；iOS手机上可以下载软件的AppStore </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsix4bh2wzj30nz0cu0we.jpg" alt="图片 1"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsix4svnllj30nz0cu0vj.jpg" alt="图片 1"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsix5dbsz0j30nz0cuafb.jpg" alt="图片 1"></p>
+</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsix5yojd1j30nz0cun2k.jpg" alt="图片 1"></p>
+<ol start="2">
+<li><p>备份Ubuntu默认的源地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.<span class="built_in">list</span> /etc/apt/sources.<span class="built_in">list</span>.backup</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsix78at0rj30o00gj45f.jpg" alt="图片 1"></p>
+</li>
+<li><p>更新源服务器列表</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsixeh9jsbj30o00gj45f.jpg" alt="图片 1"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fsixgifzy6j30o00gjqdh.jpg" alt="图片 1"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fsixgtz6vzj30o10gpgrl.jpg" alt="图片 1"></p>
+</li>
+<li><p>更新源</p>
+<p>做完此步骤之后，就可以进行apt-get install 下载了 </p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsixiipjm4j30o00g6gpu.jpg" alt="图片 1"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsixj3ddhzj30o00g6woi.jpg" alt="图片 1"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsixjoklb5j30o00fzdqw.jpg" alt="图片 1"></p>
+</li>
+</ol>
+<h2 id="Ubuntu软件操作的相关命令"><a href="#Ubuntu软件操作的相关命令" class="headerlink" title="Ubuntu软件操作的相关命令"></a>Ubuntu软件操作的相关命令</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get install package 安装包</span><br><span class="line"></span><br><span class="line">sudo apt-get remove package 删除包</span><br><span class="line"></span><br><span class="line">sudo apt-cache search package 搜索软件包</span><br><span class="line"></span><br><span class="line">sudo apt-cache show package  获取包的相关信息，如说明、大小、版本等</span><br><span class="line"></span><br><span class="line">sudo apt-get install package --reinstall   重新安装包</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install   修复安装</span><br><span class="line"></span><br><span class="line">sudo apt-get remove package --purge 删除包，包括配置文件等</span><br><span class="line"></span><br><span class="line">sudo apt-get build-dep package 安装相关的编译环境</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade 更新已安装的包</span><br><span class="line"></span><br><span class="line">sudo apt-get dist-upgrade 升级系统</span><br><span class="line"></span><br><span class="line">sudo apt-cache depends package 了解使用该包依赖那些包</span><br><span class="line"></span><br><span class="line">sudo apt-cache rdepends package 查看该包被哪些包依赖</span><br><span class="line"></span><br><span class="line">sudo apt-get source package  下载该包的源代码</span><br><span class="line"></span><br><span class="line">sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包</span><br><span class="line"></span><br><span class="line">sudo apt-get check 检查是否有损坏的依赖</span><br></pre></td></tr></table></figure>
+<h1 id="Linux常用服务器构建-samba"><a href="#Linux常用服务器构建-samba" class="headerlink" title="Linux常用服务器构建-samba"></a>Linux常用服务器构建-samba</h1><p>Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，能够完成在windows、mac操作系统下访问linux系统下的共享文件 。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用apt命令安装samba ：<code>sudo apt-get install samba samba-common</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsixmui1ijj30o00ftdqg.jpg" alt="图片 1"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li><p>创建存放共享文件的路径 :</p>
+<ul>
+<li><p>在home路径下输入命令 <code>touch share</code></p>
+</li>
+<li><p>修改其权限：<code>chmod 777 share</code></p>
+</li>
+<li><p>修改samba的配置文件：<code>vi /etc/samba/smb.conf</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsixrv358sj30nz0ioago.jpg" alt="图片 1"></p>
+</li>
+</ul>
+</li>
+<li><p>创建samba账户–如果要设置密码的话设置这步 </p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fsixtdi6ggj30nz02f3z2.jpg" alt="图片 1"></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fsixtshwefj30o003lgn9.jpg" alt="图片 1"></p>
+</li>
+</ol>
+<h2 id="启动samba"><a href="#启动samba" class="headerlink" title="启动samba"></a>启动samba</h2><p>启动：<code>sudo system-config-samba</code>。当对配置进行了更新，需要重启samba软件后才能生效。重启命令：<code>/etc/init.d/smbd restart</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsixx3hceyj30o10en77i.jpg" alt="图片 1"></p>
+<h2 id="访问共享文件"><a href="#访问共享文件" class="headerlink" title="访问共享文件"></a>访问共享文件</h2><h3 id="windows下访问方式"><a href="#windows下访问方式" class="headerlink" title="windows下访问方式"></a>windows下访问方式</h3><p>  快捷键：Win + r ，然后输入你的Linux系统的IP地址 例如：\\192.168.31.28</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fsixzpwehaj30ij0bcq4u.jpg" alt="图片 1"></p>
+<p>之后会输入框，输入Linux系统账号和密码 即可链接。链接之后可以对linux目录进行读写</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fsiy1sdthoj30o00etq5z.jpg" alt="图片 1"></p>
+<h3 id="macOS下访问方式"><a href="#macOS下访问方式" class="headerlink" title="macOS下访问方式"></a>macOS下访问方式</h3><ol>
+<li><p>cmd + k</p>
+</li>
+<li><p>输入smb:// + IP</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fsiy37tjznj30dl06fjrp.jpg" alt="屏幕快照 2018-06-21 下午5.49.13"></p>
+</li>
+<li><p>点击注册用户，输入用户名和密码即可</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiy4ucgw5j30o00gqjua.jpg" alt="图片 1"></p>
+</li>
+</ol>
+<h1 id="Linux常用服务器构建-ssh"><a href="#Linux常用服务器构建-ssh" class="headerlink" title="Linux常用服务器构建-ssh"></a>Linux常用服务器构建-ssh</h1><h2 id="ssh介绍"><a href="#ssh介绍" class="headerlink" title="ssh介绍"></a>ssh介绍</h2><p>SSH为Secure Shell的缩写，由 IETF 的网络工作小组（Network Working Group）所制定；SSH 为建立在<strong>应用层和传输层基础上的安全协议</strong>。</p>
+<p>SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。<strong>常用于远程登录</strong>，<strong>以及用户之间进行资料拷贝。</strong></p>
+<p>利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是 UNIX 系统上的一个程序，后来又迅速扩展到其他操作平台。SSH 在正确使用时可弥补网络中的漏洞。SSH 客户端适用于多种平台。几乎所有 UNIX 平台—包括 HP-UX、<strong>Linux</strong>、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。</p>
+<p>使用SSH服务，需要安装相应的服务器和客户端。客户端和服务器的关系：如果，A机器想被B机器远程控制，那么，A机器需要安装SSH服务器，B机器需要安装SSH客户端。</p>
+<h2 id="在linux服务器安装ssh"><a href="#在linux服务器安装ssh" class="headerlink" title="在linux服务器安装ssh"></a>在linux服务器安装ssh</h2><p>安装命令：<code>sudo apt-get install openssh-server</code></p>
+<h3 id="windows下ssh连接服务器"><a href="#windows下ssh连接服务器" class="headerlink" title="windows下ssh连接服务器"></a>windows下ssh连接服务器</h3><p>安装软件Xshell 5</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fsiyc7j2hbj30o10ktq6k.jpg" alt="图片 1"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsiyco3zbij30o10iz0xy.jpg" alt="图片 1"></p>
+<h3 id="macOS下ssh连接服务器"><a href="#macOS下ssh连接服务器" class="headerlink" title="macOS下ssh连接服务器"></a>macOS下ssh连接服务器</h3><p>从macOS或者linux系统客户机远程登陆linux系统服务器</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh 用户名@IP</span><br><span class="line">例如：ssh simplecoder@<span class="number">192.168</span><span class="number">.28</span><span class="number">.31</span></span><br></pre></td></tr></table></figure>
+<p>使用ssh访问，如访问出现错误。可查看是否有该文件 ～/.ssh/known_ssh 尝试删除该文件解决 。SSH 告知用户，这个主机不能识别，这时键入”yes”，SSH 就会将相关信息，写入” ~/.ssh/know_hosts” 中，再次访问，就不会有这些信息了。然后输入完口令,就可以登录到主机了。 </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsiyi1yhuvj30o10c414k.jpg" alt="图片 1"></p>
+<h1 id="Linux常用服务器构建-ftp"><a href="#Linux常用服务器构建-ftp" class="headerlink" title="Linux常用服务器构建-ftp"></a>Linux常用服务器构建-ftp</h1><p>FTP 是File Transfer Protocol（<strong>文件传输协议</strong>）的英文简称，而中文简称为“文传协议”。用于Internet上的控制文件的双向传输。同时，它也是一个应用程序（Application）。基于不同的操作系统有不同的FTP应用程序，而所有这些应用程序都遵守同一种协议以传输文件。</p>
+<p>在FTP的使用当中，用户经常遇到两个概念：”下载”（Download）和”上传”（Upload）。”下载”文件就是从远程主机拷贝文件至自己的计算机上；”上传”文件就是将文件从自己的计算机中拷贝至远程主机上。用Internet语言来说，用户可通过客户机程序向（从）远程主机上传（下载）文件。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fsiymz47qyj30nd08ljsb.jpg" alt="图片 1"></p>
+<h2 id="安装vsftpd服务器"><a href="#安装vsftpd服务器" class="headerlink" title="安装vsftpd服务器"></a>安装vsftpd服务器</h2><ol>
+<li><p>命令：<code>sudo apt-get install vsftpd</code></p>
+</li>
+<li><p>配置vsftpd.conf文件 : <code>sudo vi /etc/vsftpd.conf</code>。 </p>
+<ul>
+<li><p>不许匿名用户登录：<code>anonyous_enable=NO</code>注意NO是大写</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsiyq300e6j30o10fktgx.jpg" alt="图片 1"></p>
+</li>
+<li><p>然后指定ftp上传下载目录</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiys665rtj30o00egdna.jpg" alt="图片 1"></p>
+</li>
+<li><p>设置允许本机登录：<code>local_enable = YES</code></p>
+</li>
+<li><p>允许vsftpd.chroot_list文件中用户进程登录FTP服务器</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chroot_list_enable=YES</span><br><span class="line">chroot_list_file=/etc/vsftpd.chroot_list</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fsiyw1ghmbj30o10ksgwu.jpg" alt="图片 1"></p>
+</li>
+<li><p>允许上传文件到FTP服务器:<code>write_enable=YES</code></p>
+</li>
+<li><p>配置用户信息 :<code>sudo vi /etc/vsftpd.chroot_list</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsiyydnrbuj30o10ehwi1.jpg" alt="图片 1"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fsiyytzkb3j30o10f8gnt.jpg" alt="图片 1"></p>
+</li>
+<li><p>修改文件拥有者权限只有xr</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fsiz00uxy8j30o10hydqw.jpg" alt="图片 1"></p>
+</li>
+<li><p>创建share目录</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiz0uqr40j30o00ehgp7.jpg" alt="图片 1"></p>
+</li>
+<li><p>重新启动FTP服务器:<code>sudo /etc/init.d/vsftpd restart</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsiz24xxbaj30o00f2tcv.jpg" alt="图片 1"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="在window上使用ftp客户端-FileZilla"><a href="#在window上使用ftp客户端-FileZilla" class="headerlink" title="在window上使用ftp客户端(FileZilla)"></a>在window上使用ftp客户端(FileZilla)</h2><h3 id="安装-amp-配置FileZilla"><a href="#安装-amp-配置FileZilla" class="headerlink" title="安装&amp;配置FileZilla"></a>安装&amp;配置FileZilla</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsiz4rjsdej30lu0gwq5p.jpg" alt="图片 1"></p>
+<p>之后在配置界面输入主机IP、用户名、密码、端口号（ftp默认端口21）即可连接</p>
+<h2 id="在macOS上使用命令删除和下载文件"><a href="#在macOS上使用命令删除和下载文件" class="headerlink" title="在macOS上使用命令删除和下载文件"></a>在macOS上使用命令删除和下载文件</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ftp IP	登录ftp服务器</span><br><span class="line">put somefile 上传文件</span><br><span class="line">get somefile 下载文件</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fsiz9iwgfwj30o10gudje.jpg" alt="图片 1"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/20/Linux命令(二)/" rel="next" title="Linux命令(二)">
+                <i class="fa fa-chevron-left"></i> Linux命令(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/05/Untitled/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gedit编辑器"><span class="nav-number">1.</span> <span class="nav-text">gedit编辑器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sublime编辑器"><span class="nav-number">2.</span> <span class="nav-text">sublime编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令介绍"><span class="nav-number">2.1.</span> <span class="nav-text">常用命令介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑器之神-vim"><span class="nav-number">3.</span> <span class="nav-text">编辑器之神 -vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vi简介"><span class="nav-number">3.1.</span> <span class="nav-text">vi简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行模式"><span class="nav-number">3.2.</span> <span class="nav-text">命令行模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本输入模式"><span class="nav-number">3.3.</span> <span class="nav-text">文本输入模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#末行模式"><span class="nav-number">3.4.</span> <span class="nav-text">末行模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim基础操作"><span class="nav-number">3.5.</span> <span class="nav-text">vim基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进入插入模式：ESC"><span class="nav-number">3.5.1.</span> <span class="nav-text">进入插入模式：ESC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除剪切命令"><span class="nav-number">3.5.2.</span> <span class="nav-text">删除剪切命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销命令"><span class="nav-number">3.5.3.</span> <span class="nav-text">撤销命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本行移动"><span class="nav-number">3.5.4.</span> <span class="nav-text">文本行移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制粘贴"><span class="nav-number">3.5.5.</span> <span class="nav-text">复制粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视模式"><span class="nav-number">3.5.6.</span> <span class="nav-text">可视模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换操作"><span class="nav-number">3.5.7.</span> <span class="nav-text">替换操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找命令"><span class="nav-number">3.5.8.</span> <span class="nav-text">查找命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换命令"><span class="nav-number">3.5.9.</span> <span class="nav-text">替换命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存并退出的三种方式"><span class="nav-number">3.5.10.</span> <span class="nav-text">保存并退出的三种方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu软件安装与卸载"><span class="nav-number">4.</span> <span class="nav-text">ubuntu软件安装与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Ubuntu软件下载地址"><span class="nav-number">4.1.</span> <span class="nav-text">更新Ubuntu软件下载地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu软件操作的相关命令"><span class="nav-number">4.2.</span> <span class="nav-text">Ubuntu软件操作的相关命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用服务器构建-samba"><span class="nav-number">5.</span> <span class="nav-text">Linux常用服务器构建-samba</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动samba"><span class="nav-number">5.3.</span> <span class="nav-text">启动samba</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问共享文件"><span class="nav-number">5.4.</span> <span class="nav-text">访问共享文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下访问方式"><span class="nav-number">5.4.1.</span> <span class="nav-text">windows下访问方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS下访问方式"><span class="nav-number">5.4.2.</span> <span class="nav-text">macOS下访问方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用服务器构建-ssh"><span class="nav-number">6.</span> <span class="nav-text">Linux常用服务器构建-ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh介绍"><span class="nav-number">6.1.</span> <span class="nav-text">ssh介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在linux服务器安装ssh"><span class="nav-number">6.2.</span> <span class="nav-text">在linux服务器安装ssh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下ssh连接服务器"><span class="nav-number">6.2.1.</span> <span class="nav-text">windows下ssh连接服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS下ssh连接服务器"><span class="nav-number">6.2.2.</span> <span class="nav-text">macOS下ssh连接服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux常用服务器构建-ftp"><span class="nav-number">7.</span> <span class="nav-text">Linux常用服务器构建-ftp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装vsftpd服务器"><span class="nav-number">7.1.</span> <span class="nav-text">安装vsftpd服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在window上使用ftp客户端-FileZilla"><span class="nav-number">7.2.</span> <span class="nav-text">在window上使用ftp客户端(FileZilla)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-amp-配置FileZilla"><span class="nav-number">7.2.1.</span> <span class="nav-text">安装&amp;配置FileZilla</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在macOS上使用命令删除和下载文件"><span class="nav-number">7.3.</span> <span class="nav-text">在macOS上使用命令删除和下载文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

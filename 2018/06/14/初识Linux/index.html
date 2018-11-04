@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么要学Linux如果你是一个前端的开发者，也许你和我有相似的经历：经常要和各种终端命令打交道，日常代码的版本管理，软件安装，或者搭建一个博客等等，它们的大多数的操作需要用命令行来完成。相比于各种操作的图形客户端，缺少了一种可视化的东西，但对于工作效率的提升绝有很大的帮助。就拿Git版本管理工具来说，你可以使用类似于Sourcetree或者tower等图形界面的管理工具，也可以使用看起来有些“原">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Linux">
+<meta property="og:url" content="http://simplecoder.cn/2018/06/14/初识Linux/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么要学Linux如果你是一个前端的开发者，也许你和我有相似的经历：经常要和各种终端命令打交道，日常代码的版本管理，软件安装，或者搭建一个博客等等，它们的大多数的操作需要用命令行来完成。相比于各种操作的图形客户端，缺少了一种可视化的东西，但对于工作效率的提升绝有很大的帮助。就拿Git版本管理工具来说，你可以使用类似于Sourcetree或者tower等图形界面的管理工具，也可以使用看起来有些“原">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbocawtmyj30bj08ngor.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fsbofmzrcfj308j06ujrx.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsbon69xpcj30bj08amzl.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbpoefy2uj30bj073tci.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbpor0im3j30bj06htcf.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbsj2lsi4j307702djra.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fsbsjtdrnrj30bj048aan.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fsbslhc1euj30bj079t8x.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fsbty1cp2ej30bj06vtbt.jpg">
+<meta property="og:updated_time" content="2018-06-15T06:47:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Linux">
+<meta name="twitter:description" content="为什么要学Linux如果你是一个前端的开发者，也许你和我有相似的经历：经常要和各种终端命令打交道，日常代码的版本管理，软件安装，或者搭建一个博客等等，它们的大多数的操作需要用命令行来完成。相比于各种操作的图形客户端，缺少了一种可视化的东西，但对于工作效率的提升绝有很大的帮助。就拿Git版本管理工具来说，你可以使用类似于Sourcetree或者tower等图形界面的管理工具，也可以使用看起来有些“原">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbocawtmyj30bj08ngor.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simplecoder.cn/2018/06/14/初识Linux/">
+
+
+
+
+
+  <title>初识Linux | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simplecoder.cn/2018/06/14/初识Linux/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初识Linux</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-14T23:27:56+08:00">
+                2018-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习总结/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="为什么要学Linux"><a href="#为什么要学Linux" class="headerlink" title="为什么要学Linux"></a>为什么要学Linux</h3><p>如果你是一个前端的开发者，也许你和我有相似的经历：经常要和各种终端命令打交道，日常代码的版本管理，软件安装，或者搭建一个博客等等，它们的大多数的操作需要用命令行来完成。相比于各种操作的图形客户端，缺少了一种可视化的东西，但对于工作效率的提升绝有很大的帮助。就拿<strong>Git</strong>版本管理工具来说，你可以使用类似于<strong>Sourcetree</strong>或者<strong>tower</strong>等图形界面的管理工具，也可以使用看起来有些“原始”的命令行，但后者的多数指令是多平台通用的，省去了换一种图形工具就需要重新学习的麻烦，并且能完成较前者更复杂的操作。</p>
+<p>如果你是一个后台开发。。。</p>
+<p>所以，当回望大学期间的那段苦涩的Linux学习生涯，不得不感叹，自我驱动加上目的明确的学习方式，要比死记书本上茫茫的代码要有意义且效率的多。</p>
+<p>既然目标明确了，这篇文章以下的部分就来从计算机基础部分开始，逐步展开Linux较为系统的学习，供以后查阅参考。</p>
+<hr>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>操作系统赋值调用计算机或者手机设备（硬件），提供其他软件可以运行的环境。</p>
+<hr>
+<h3 id="操作系统的发展史"><a href="#操作系统的发展史" class="headerlink" title="操作系统的发展史"></a>操作系统的发展史</h3><ul>
+<li><p><strong>Unix</strong></p>
+<p>1965年之前的时候，电脑并不像现在一样普遍，<strong>它可不是一般人能碰的起的，除非是军事或者学院的研究机构</strong>，而且当时大型主机至多能提供30台终端（30个键盘、显示器)，连接一台电脑 </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbocawtmyj30bj08ngor.jpg" alt="image-20180615105311653"></p>
+</li>
+<li><p><strong>Minix</strong> </p>
+<p>因为AT&amp;T的政策改变，在Version 7 Unix推出之后，<strong>发布新的使用条款</strong>，<strong>将**</strong>UNIX<strong>**源代码私有化</strong>，在大学中不再能使用UNIX源代码。Andrew S. Tanenbaum(<strong>塔能鲍姆</strong>，荷兰人美国国籍)教授为了能在课堂上教授学生操作系统运作的实务细节，决定在不使用任何AT&amp;T的源代码前提下，自行开发与UNIX兼容的操作系统，以避免版权上的争议。他以小型UNIX（mini-UNIX）之意，将它称为MINIX。 </p>
+</li>
+<li><p><strong>Linux</strong> </p>
+<p>1991年因为Minix只是教学使用，因此功能并不强，因此<strong>Torvalds</strong>（林纳斯·托瓦兹）<strong>利用GNU的bash（是许多Linux发行版的默认Shell）当做开发环境，gcc当做编译工具，编写了Linux内核-v0.02，</strong>但是一开始<strong>Linux</strong>并不能兼容<strong>Unix</strong>，即Unix上跑的应用程序不能在Linux上跑，即应用程序与内核之间的接口不一致，因为Unix是遵循POSIX规范的，因此Torvalds（托瓦尔兹）修改了Linux，并遵循POSIX（Portable Operating System Interface，他规范了应用程序与内核的接口规范）； 一开始Linux只适用于386，后来经过全世界的网友的帮助，最终能够兼容多种硬件；</p>
+<p>支持多任务</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fsbofmzrcfj308j06ujrx.jpg" alt="image-20180615105630625"></p>
+</li>
+</ul>
+<blockquote>
+<p>托瓦尔兹1969年12月28日出生于芬兰赫尔辛基市，父母都是记者。他从小就对计算机感兴趣。1988年他进入赫尔辛基大学学习，专业为计算机科学。1991年，他购买了一台属于自己的PC机。赫尔辛基大学当时采用Unix操作系统，托瓦尔兹觉得该产品性能不尽如人意，于是就尝试着自己编写一款操作系统内核，这就是Linux操作系统来源。1997年至2003年，托瓦尔兹在美国加州全美达(Transmeta)公司工作。2003年7月，他加盟“开放源代码开发实验室”(OSDL)，以全力开发Linux内核。后来OSDL与“免费标准集团”(FSG)合并成立了Linux基金会。托瓦尔兹如今仍在Linux基金会工作</p>
+</blockquote>
+<hr>
+<h3 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h3><p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsbon69xpcj30bj08amzl.jpg" alt="image-20180615110344283"></p>
+<p><strong>Ubuntu</strong>（友帮拓、优般图、乌班图）是一个以<a href="http://baike.baidu.com/item/%25E6%25A1%258C%25E9%259D%25A2" target="_blank" rel="noopener">桌面</a>应用为主的开源GNU/Linux操作系统，Ubuntu 是基于<a href="http://baike.baidu.com/item/Debian" target="_blank" rel="noopener">Debian</a> GNU/<a href="http://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a>，支持x86、amd64（即x64）和<a href="http://baike.baidu.com/item/ppc/150" target="_blank" rel="noopener">ppc</a>架构，由全球化的专业开发团队（Canonical Ltd）打造的。</p>
+<p><strong>Red Hat</strong>公司发布的面向企业用户的Linux操作系统。</p>
+<p><strong>SUSE</strong>(发音 /ˈsuːsə/)是指SUSE Linux ，是德国 SuSE Linux AG公司发行维护的Linux发行版，是属于此公司的注册商标。第一个版本出现在1994年年初。2004年这家公司被Novell公司收购。</p>
+<p><strong>Fedora</strong> 是一个 <a href="http://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a> 发行版，是一款由全球社区爱好者构建的面向日常应用的快速、稳定、强大的操作系统。它允许任何人自由地使用、修改和重发布，无论现在还是将来。它由一个强大的社群开发，这个社群的成员以自己的不懈努力，提供并维护自由、<a href="http://baike.baidu.com/item/%25E5%25BC%2580%25E6%2594%25BE%25E6%25BA%2590%25E7%25A0%2581" target="_blank" rel="noopener">开放源码</a>的软件和开放的标准。Fedora 项目由 Fedora 基金会管理和控制，得到了 Red Hat 的支持。</p>
+<h3 id="Linux不同版本及应用领域"><a href="#Linux不同版本及应用领域" class="headerlink" title="Linux不同版本及应用领域"></a>Linux不同版本及应用领域</h3><h4 id="Linux内核及发行版本介绍"><a href="#Linux内核及发行版本介绍" class="headerlink" title="Linux内核及发行版本介绍"></a>Linux内核及发行版本介绍</h4><ul>
+<li><p><strong>Linux内核版本</strong></p>
+<p><strong>内核</strong>(kernel)是系统的心脏<strong>，</strong>是运行程序和管理像磁盘和打印机等硬件设备的核心程序，它提供了一个在裸设备与应用程序间的抽象层。</p>
+<p>Linux内核版本又分为稳定版和开发版，两种版本是相互关联，相互循环：</p>
+<p>   稳定版：具有工业级强度，可以广泛地应用和部署。新的稳定版相对于较旧的只是修正一些bug或加入一些新的驱动程序。</p>
+<p>   开发版：由于要试验各种解决方案，所以变化很快。</p>
+<p>内核源码网址：<a href="http://www.kernel.org" target="_blank" rel="noopener">http://www.kernel.org</a> 所有来自全世界的对Linux源码的修改最终都会汇总到这个网站，由Linus（林纳斯·托瓦兹）领导的开源社区对其进行甄别和修改最终决定是否进入到Linux主线内核源码中。</p>
+</li>
+<li><p><strong>Linux发行版本</strong></p>
+<p>Linux发行版 (也被叫做 GNU/Linux 发行版) 通常包含了包括桌面环境、办公套件、媒体播放器、数据库等应用软件。 </p>
+<p><strong>GNU</strong>计划：又称革奴计划，是由<a href="http://baike.baidu.com/item/Richard%2520Stallman" target="_blank" rel="noopener">Richard Stallman</a>在1983年9月27日公开发起的。它的目标是创建一套完全自由的操作系统。Richard Stallman最早是在net.unix-wizards新闻组上公布该消息，并附带《GNU宣言》等解释为何发起该计划的文章，其中一个理由就是要“重现当年软件界合作互助的团结精神”。为保证GNU软件可以自由地“使用、复制、修改和发布”，所有GNU软件都有一份在禁止其他人添加任何限制的情况下授权所有权利给任何人的协议条款，GNU通用公共许可证（GNU General Public License，GPL）。即“反版权”（或称Copyleft）概念。 </p>
+</li>
+</ul>
+<h4 id="应用领域"><a href="#应用领域" class="headerlink" title="应用领域"></a><strong>应用领域</strong></h4><ul>
+<li><p><strong>个人桌面领域的应用</strong> </p>
+<p>此领域是传统linux应用最薄弱的环节，传统linux由于界面简单、操作复杂、应用软件少的缺点，一直被windows所压制，但近些年来随着ubuntu、fedora [fɪˈdɔ:rə] 等优秀桌面环境的兴起，同时各大硬件厂商对其支持的加大，linux在个人桌面领域的占有率在逐渐的提高</p>
+<p>典型代表：ubuntu、fedora [fɪ’dɔːrə]、suse linux</p>
+<p>在Ubuntu中玩QQ</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbpoefy2uj30bj073tci.jpg" alt="image-20180615113931426"></p>
+</li>
+</ul>
+<p>  <img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbpor0im3j30bj06htcf.jpg" alt="image-20180615113949770"></p>
+<ul>
+<li><p><strong>服务器领域</strong> </p>
+<p>linux在服务器领域的应用是其重要分支</p>
+<p>linux免费、稳定、高效等特点在这里得到了很好的体现，但早期因为维护、运行等原因同样受到了很大的限制，但近些年来linux服务器市场得到了飞速的提升，尤其在一些高端领域尤为广泛</p>
+<p>典型代表：</p>
+<p>​    Red Hat公司的AS系列</p>
+<p>​    完全开源的debian系列</p>
+<p>​    suse EnterPrise 11系列等</p>
+</li>
+<li><p><strong>嵌入式领域</strong> </p>
+<p>智能硬件</p>
+<p>近些年来linux在嵌入式领域的应用得到了飞速的提高</p>
+<p>l<strong>inux</strong>运行稳定、对网络的良好支持性、低成本，且可以根据需要进行软件裁剪，内核最小可以达到几百KB等特点，使其近些年来在嵌入式领域的应用得到非常大的提高</p>
+<p>主要应用：机顶盒、数字电视、网络电话、程控交换机、手机、PDA、智能家居、智能硬件等都是其应用领域，得到了摩托罗拉、三星、NEC、Google等公司的大力推广</p>
+</li>
+</ul>
+<hr>
+<h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><p>在常用的Windows平台下，打开计算机，我们可以看到多个树并列的目录结构</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fsbsj2lsi4j307702djra.jpg" alt="image-20180615131811721"></p>
+<p>在 Linux 下，我们是看不到这些驱动器盘符，我们看到的是文件夹（目录）： </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fsbsjtdrnrj30bj048aan.jpg" alt="image-20180615131855388"></p>
+<ul>
+<li><p><strong>类Unix系统目录结构</strong></p>
+<p>linux没有盘符这个概念，只有一个根目录/，所有文件都在它下面 </p>
+</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsbslhc1euj30bj079t8x.jpg" alt="image-20180615132031382"></p>
+<ul>
+<li><p><strong>打开控制台快捷键：Ctrl+Alt+T</strong> </p>
+<p>控制台文字调大：Ctrl+Shift++（Ctrl键加上Shift加载+号）</p>
+<p>控制台文字调小：Ctrl+-（（Ctrl键加上减号）</p>
+</li>
+<li><p><strong>在一个控制层打开另外一个窗口：Ctrl+Shift+T</strong> </p>
+<p>打开多个窗口命令：Ctrl+Shift+T</p>
+<p>切换到第一个窗口：Alt+1</p>
+<p>切换到第二个窗口：Alt+2</p>
+<p>切换到第三个窗口：Alt+3</p>
+<p>退出窗口命令：exit</p>
+</li>
+</ul>
+<h4 id="Linux目录简介"><a href="#Linux目录简介" class="headerlink" title="Linux目录简介"></a>Linux目录简介</h4><ul>
+<li><strong>/</strong>：根目录，一般根目录下只存放目录，在Linux下有且只有一个根目录。所有的东西都是从这里开始。当你在终端里输入“/home”，你其实是在告诉电脑，先从/（根目录）开始，再进入到home目录。 </li>
+<li><strong>/bin</strong>：/usr/bin: 可执行二进制文件的目录，程序就安装在这个目录，如常用的命令ls、tar、mv、cat等。 </li>
+<li><strong>/boot</strong>：（引导的意思）放置linux系统启动时用到的一些文件，如果删除了，电脑有又可能启动不了，如Linux的内核文件：/boot/vmlinuz，系统引导管理器：/boot/grub。 </li>
+<li>/<strong>dev</strong>：存放<strong>linux</strong>系统下的设备文件，访问该目录下某个文件，相当于访问某个设备，常用的是挂载光驱 mount /dev/cdrom /mnt。 </li>
+<li><strong>/etc</strong>：系统配置文件存放的目录，不建议在此目录下存放可执行文件，重要的配置文件有 /etc/inittab、/etc/fstab、/etc/init.d、/etc/X11、/etc/sysconfig、/etc/xinetd.d。 </li>
+<li><strong>/home</strong>：系统默认的用户<strong>家目录</strong>，新增用户账号时，用户的家目录都存放在此目录下，~表示当前用户的家目录，~edu 表示用户 edu 的家目录。<strong>注意，以后你要做任何事情建议都在这里做，其他目录不要随便删除。</strong> </li>
+<li><strong>/lib、/usr/lib、/usr/local/lib</strong>：系统使用的函数库的目录，程序在执行过程中，需要调用一些额外的参数时需要函数库的协助。 </li>
+<li><strong>/root</strong>：系统管理员root的家目录。 </li>
+<li><strong>/lost+fount</strong>：系统异常产生错误时，会将一些遗失的片段放置于此目录下。 </li>
+<li><strong>/mnt: /media</strong>：光盘默认挂载点，通常光盘挂载于 /mnt/cdrom 下，也不一定，可以选择任意位置进行挂载。 </li>
+<li><strong>/opt</strong>：给主机额外安装软件所摆放的目录。 </li>
+<li><strong>/proc</strong>：此目录的数据都在内存中，如系统核心，外部设备，网络状态，由于数据都存放于内存中，所以不占用磁盘空间，比较重要的目录有 /proc/cpuinfo、/proc/interrupts、/proc/dma、/proc/ioports、/proc/net/ 等。 </li>
+<li><strong>/sbin、/usr/sbin、/usr/local/sbin</strong>：放置系统管理员使用的可执行命令，如fdisk、shutdown、mount 等。与 /bin 不同的是，这几个目录是给系统管理员 root使用的命令，一般用户只能”查看”而不能设置和使用。 </li>
+<li><strong>/tmp</strong>：一般用户或正在执行的程序临时存放文件的目录，任何人都可以访问，重要数据不可放置在此目录下。 </li>
+<li><strong>/srv</strong>：服务启动之后需要访问的数据目录，如 www 服务需要访问的网页数据存放在 /srv/www 内。 </li>
+<li><strong>/usr</strong>：应用程序存放目录，/usr/bin 存放应用程序，/usr/share 存放共享数据，/usr/lib 存放不能直接运行的，却是许多程序运行所必需的一些函数库文件。/usr/local: 存放软件升级包。/usr/share/doc: 系统说明文件存放目录。/usr/share/man: 程序说明文件存放目录。 </li>
+<li><strong>/var</strong>：放置系统执行过程中经常变化的文件，如随时更改的日志文件 /var/log，/var/log/message：所有的登录文件存放目录，/var/spool/mail：邮件存放的目录，/var/run:程序或服务启动后，其PID存放在该目录下。 </li>
+</ul>
+<h4 id="用户目录"><a href="#用户目录" class="headerlink" title="用户目录"></a><strong>用户目录</strong></h4><p><strong>cd命令</strong></p>
+<p>cd是change dir 简称，用于切换目录 </p>
+<p><strong>家目录</strong> </p>
+<p>位于/home/user，称之为用户工作目录或<strong>家目录</strong>,表示方式： </p>
+<p><strong>查看当前在个目录，pwd</strong> </p>
+<p><strong>跳转到当前用户的家目录</strong>，cd ~</p>
+<h4 id="文件权限理解"><a href="#文件权限理解" class="headerlink" title="文件权限理解"></a><strong>文件权限理解</strong></h4><ul>
+<li><p><strong>文件权限</strong> </p>
+<p>文件权限就是文件的访问控制权限，即哪些用户和组群可以访问文件以及可以执行什么样的操作。</p>
+<p>Unix/Linux<strong>系统是一个典型的多用户系统</strong>，不同的用户处于不同的地位，对文件和目录有不同的访问权限。为了保护系统的安全性，Unix/Linux系统除了对用户权限作了严格的界定外，还在用户身份认证、访问控制、传输安全、文件读写权限等方面作了周密的控制。</p>
+<p>在 Unix/Linux中的每一个文件或目录都包含有访问权限，这些访问权限决定了谁能访问和如何访问这些文件和目录。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>访问用户</strong> </p>
+<p>通过设定权限可以从以下三种访问方式限制访问权限： </p>
+<ol>
+<li>只允许用户自己访问（<strong>所有者</strong>） 所有者就是创建文件的用户，用户是所有用户所创建文件的所有者，用户可以允许所在的用户组能访问用户的文件。</li>
+<li>允许一个预先指定的用户组中的用户访问（<strong>用户组</strong>） 用户都组合成用户组，例如，某一类或某一项目中的所有用户都能够被系统管理员归为一个用户组，一个用户能够授予所在用户组的其他成员的文件访问权限。</li>
+<li>允许系统中的任何用户访问（<strong>其他用户</strong>） 用户也将自己的文件向系统内的所有用户开放，在这种情况下，系统内的所有用户都能够访问用户的目录或文件。在这种意义上，系统内的其他所有用户就是 other 用户类 </li>
+</ol>
+</li>
+<li><p><strong>访问权限</strong> </p>
+<p>用户能够控制一个给定的文件或目录的访问程度，一个文件或目录可能有读、写及执行权限：</p>
+<p>读权限（r） 对文件而言，具有<strong>读取文件内容的</strong>权限；对目录来说，<strong>具有浏览目录的权限。</strong></p>
+<p>写权限（w） 对文件而言，具有<strong>新增、修改文件内容的权限</strong>；对目录来说，具有<strong>删除、移动目录内文件的权限</strong>。</p>
+<p>可执行权限（x） 对文件而言，具有<strong>执行文件的权限</strong>；对目录来说该用户具有<strong>进入目录的权限。</strong></p>
+<p>注意：通常，Unix/Linux系统只允许文件的属主(所有者)或超级用户改变文件的读写权限。</p>
+</li>
+<li><p><strong>示例说明</strong> </p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsbty1cp2ej30bj06vtbt.jpg" alt="image-20180615140711619">、</p>
+<p>第1个字母代表文件的类型：<strong>“d”</strong> <strong>代表文件夹、</strong>“-” <strong>代表普通文件</strong>、“c” 代表硬件字符设备、“b” 代表硬件块设备、“s”表示管道文件、“l” 代表软链接文件(l是L的小写)。 后 9 个字母分别代表三组权限：文件所有者、用户者、其他用户拥有的权限。 </p>
+<p>每一个用户都有它自身的读、写和执行权限。 </p>
+<p>第一组权限控制访问自己的文件权限，即所有者权限。</p>
+<p>第二组权限控制用户组访问其中一个用户的文件的权限。</p>
+<p>第三组权限控制其他所有用户访问一个用户的文件的权限。</p>
+<p>这三组权限赋予用户不同类型（即所有者、用户组和其他用户）的读、写及执行权限就构成了一个有9种类型的权限组。 </p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/UIStackView/" rel="next" title="UIStackView">
+                <i class="fa fa-chevron-left"></i> UIStackView
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/15/Linux命令(一)/" rel="prev" title="Linux命令(一)">
+                Linux命令(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要学Linux"><span class="nav-number">1.</span> <span class="nav-text">为什么要学Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的发展史"><span class="nav-number">3.</span> <span class="nav-text">操作系统的发展史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的发展"><span class="nav-number">4.</span> <span class="nav-text">操作系统的发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux不同版本及应用领域"><span class="nav-number">5.</span> <span class="nav-text">Linux不同版本及应用领域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux内核及发行版本介绍"><span class="nav-number">5.1.</span> <span class="nav-text">Linux内核及发行版本介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用领域"><span class="nav-number">5.2.</span> <span class="nav-text">应用领域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件和目录"><span class="nav-number">6.</span> <span class="nav-text">文件和目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux目录简介"><span class="nav-number">6.1.</span> <span class="nav-text">Linux目录简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户目录"><span class="nav-number">6.2.</span> <span class="nav-text">用户目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件权限理解"><span class="nav-number">6.3.</span> <span class="nav-text">文件权限理解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
