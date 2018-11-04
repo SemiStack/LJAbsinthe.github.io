@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="category,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
+<meta name="keywords" content="category">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑器和服务器">
+<meta property="og:url" content="http://simplecoder.cn/2018/06/21/KVC&KVO/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw4ke1208gj30it0680u3.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fw4kgl0aupj30pq0ca74x.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fw4ksrfjkkj30qn04iacf.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw4kvsc74pj30oo04s0ur.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw4kxa5uisj30dw08nte8.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw4l1irymsj30i901gq3e.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw4l4no1f3j30sg0ghwg9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw4nh8y3dyj31kw0ls0z1.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw4q7smnjdj318f0fy775.jpg">
+<meta property="og:updated_time" content="2018-11-04T19:18:43.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑器和服务器">
+<meta name="twitter:description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw4ke1208gj30it0680u3.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simplecoder.cn/2018/06/21/KVC&KVO/">
+
+
+
+
+
+  <title>编辑器和服务器 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simplecoder.cn/2018/06/21/KVC&KVO/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编辑器和服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T10:14:33+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="KVO和KVC底层原理"><a href="#KVO和KVC底层原理" class="headerlink" title="KVO和KVC底层原理"></a>KVO和KVC底层原理</h1><p>我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。</p>
+<h2 id="键值监听KVO"><a href="#键值监听KVO" class="headerlink" title="键值监听KVO"></a>键值监听KVO</h2><h3 id="基础回顾"><a href="#基础回顾" class="headerlink" title="基础回顾"></a>基础回顾</h3><p>KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。</p>
+<p>在ObjC中使用KVO操作常用的方法如下：</p>
+<ul>
+<li>注册指定Key路径的监听器： <strong>addObserver: forKeyPath: options:  context:</strong></li>
+<li>删除指定Key路径的监听器： <strong>removeObserver: forKeyPath</strong>、<strong>removeObserver: forKeyPath: context:</strong></li>
+<li>回调监听： <strong>observeValueForKeyPath: ofObject: change: context:</strong></li>
+</ul>
+<p>KVO的使用步骤也比较简单：</p>
+<ol>
+<li>通过addObserver: forKeyPath: options: context:为被监听对象（它通常是数据模型）注册监听器</li>
+<li>重写监听器的observeValueForKeyPath: ofObject: change: context:方法</li>
+</ol>
+<p>示例代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    Person *p2 = [[Person alloc] init];</span><br><span class="line">    p1.age = <span class="number">1</span>;</span><br><span class="line">    p1.age = <span class="number">2</span>;</span><br><span class="line">    p2.age = <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// self 监听 p1的 age属性</span></span><br><span class="line">    <span class="built_in">NSKeyValueObservingOptions</span> options = <span class="built_in">NSKeyValueObservingOptionNew</span> | <span class="built_in">NSKeyValueObservingOptionOld</span>;</span><br><span class="line"></span><br><span class="line">    [p1 addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"age"</span> options:options context:<span class="literal">nil</span>];</span><br><span class="line">    p1.age = <span class="number">10</span>;</span><br><span class="line">    [p1 removeObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"age"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)observeValueForKeyPath:(<span class="built_in">NSString</span> *)keyPath ofObject:(<span class="keyword">id</span>)object change:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSKeyValueChangeKey</span>,<span class="keyword">id</span>&gt; *)change context:(<span class="keyword">void</span> *)context</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"监听到%@的%@改变了%@"</span>, object, keyPath,change);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印内容</span></span><br><span class="line">监听到&lt;Person: <span class="number">0x604000205460</span>&gt;的age改变了&#123;</span><br><span class="line">    kind = <span class="number">1</span>;</span><br><span class="line">    new = <span class="number">10</span>;</span><br><span class="line">    old = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内部实现分析"><a href="#内部实现分析" class="headerlink" title="内部实现分析"></a>内部实现分析</h3><p>上述代码中可以看出，在添加监听之后，age属性的值在发生改变时，就会通知到监听者，执行监听者的<code>observeValueForKeyPath</code>方法。</p>
+<p>那么，被监听者内部做了什么操作来实现这样神奇的功能？</p>
+<p>首先我们想到的可能就是重写了Observer内部属性的set方法。我们可以来到上述Person类中重写age的set方法，观察是否是KVO在set方法内部做了一些操作来通知监听者。通过上一节的OC对象本质的学习我们知道，对象在调用实例方法的时候，会通过isa指针找到其类对象，在类对象内部调用方法的实现。</p>
+<p>按照上面的分析，p1和p2对象应该都是统一调用了存放在Person类对象内部的set方法才合理。</p>
+<p>但是我们发现即使重写了set方法，p1对象和p2对象调用同样的set方法，结果是p1除了调用set方法之外还会另外执行监听器的<code>observeValueForKeyPath</code>方法。</p>
+<h3 id="KVO的本质"><a href="#KVO的本质" class="headerlink" title="KVO的本质"></a>KVO的本质</h3><p>还是上面的例子。KVO在运行时获取对p1对象做了一些改变。相当于在程序运行过程中，对p1对象做了一些变化，使得p1对象在调用setAge:方法的时候可能做了一些额外的操作，所以问题出在对象身上，两个对象在内存中肯定不一样，两个对象可能本质上并不一样。接下来来探索KVO内部是怎么实现的。</p>
+<p>首先我们对上述代码中添加监听的地方打断点，看观察一下，addObserver方法对p1对象做了什么处理？也就是说p1对象在经过addObserver方法之后发生了什么改变，我们通过打印isa指针如下图所示</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fw4ke1208gj30it0680u3.jpg" alt="addObserver对p1对象的处理"></p>
+<p>通过上图我们发现，p1对象执行过addObserver操作之后，p1对象的isa指针由之前的指向类对象Person变为指向<code>NSKVONotifyin_Person</code>类对象，而p2对象没有任何改变。也就是说一旦p1对象添加了KVO监听以后，其isa指针就会发生变化，因此set方法的执行效果就不一样了。</p>
+<p>那么我们先来观察p2对象在内容中是如何存储的，然后对比p2来观察p1。<br>首先我们知道，p2在调用setage方法的时候，首先会通过p2对象中的isa指针找到Person类对象，然后在类对象中找到setage方法。然后找到方法对应的实现。如下图所示</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fw4kgl0aupj30pq0ca74x.jpg" alt="未使用KVO"></p>
+<p>但是刚才我们发现p1对象的isa指针在经过KVO监听之后已经指向了<code>NSKVONotifyin_Person</code>类对象，<code>NSKVONotifyin_Person</code>其实是Person的子类，那么也就是说其superclass指针是指向Person类对象的，<code>NSKVONotifyin_Person</code>是runtime在运行时生成的。那么p1对象在调用setage方法的时候，肯定会根据p1的isa找到<code>NSKVONotifyin_Person</code>，在<code>NSKVONotifyin_Person</code>中找setAge:的方法及实现。</p>
+<p><code>NSKVONotifyin_Person</code>中的setAge:方法中其实调用了 Fundation框架中C语言函数 <code>_NSsetIntValueAndNotify</code>，<code>_NSsetIntValueAndNotify</code>内部首先调用<code>willChangeValueForKey</code>将要改变方法，之后调用父类的setAge方法对成员变量赋值，最后调用<code>didChangeValueForKey</code>已经改变方法。<code>didChangeValueForKey</code>中会调用监听器的监听方法，最终来到监听者的observeValueForKeyPath方法中。</p>
+<h3 id="另一种验证思路"><a href="#另一种验证思路" class="headerlink" title="另一种验证思路"></a>另一种验证思路</h3><p>其实，我们可以通过打印p1和p2所调用的setAge：方法地址来侧面验证我们的上述结论。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过methodForSelector找到方法实现的地址</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"添加KVO监听之前 - p1 = %p, p2 = %p"</span>, [p1 methodForSelector: <span class="keyword">@selector</span>(setAge:)],[p2 methodForSelector: <span class="keyword">@selector</span>(setAge:)]);</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSKeyValueObservingOptions</span> options = <span class="built_in">NSKeyValueObservingOptionNew</span> | <span class="built_in">NSKeyValueObservingOptionOld</span>;</span><br><span class="line">[p1 addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"age"</span> options:options context:<span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"添加KVO监听之后 - p1 = %p, p2 = %p"</span>, [p1 methodForSelector: <span class="keyword">@selector</span>(setAge:)],[p2 methodForSelector: <span class="keyword">@selector</span>(setAge:)]);</span><br></pre></td></tr></table></figure>
+<p>打印结果如下</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fw4ksrfjkkj30qn04iacf.jpg" alt="监听前后地址"></p>
+<p>我们发现在添加KVO监听之前，p1和p2的setAge方法实现的地址相同，而经过KVO监听之后，p1的setAge方法实现的地址发生了变化，我们通过打印方法实现来看一下前后的变化发现，确实如我们上面所讲的一样，p1的setAge方法的实现由Person类方法中的setAge方法转换为了C语言的Foundation框架的<code>_NSsetIntValueAndNotify</code>函数。</p>
+<p>Foundation框架中会根据属性的类型，调用不同的方法。例如我们之前定义的int类型的age属性，那么我们看到Foundation框架中调用的<code>_NSsetIntValueAndNotify</code>函数。那么我们把age的属性类型变为<code>double</code>重新打印一遍</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw4kvsc74pj30oo04s0ur.jpg" alt="_NSSetDoubleValueAndNotify函数"></p>
+<p>我们发现调用的函数变为了<code>_NSSetDoubleValueAndNotify</code>，那么这说明Foundation框架中有许多此类型的函数，通过属性的不同类型调用不同的函数。</p>
+<p>那么我们可以推测Foundation框架中还有很多例如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_NSSetBoolValueAndNotify、_NSSetCharValueAndNotify、_NSSetFloatValueAndNotify、_NSSetLongValueAndNotify</span><br></pre></td></tr></table></figure>
+<p>等等函数。</p>
+<p>我们可以找到Foundation框架文件，通过命令行查询关键字找到相关函数</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw4kxa5uisj30dw08nte8.jpg" alt="相关函数"></p>
+<h3 id="动态生成类NSKVONotifyin-Person的内部组成"><a href="#动态生成类NSKVONotifyin-Person的内部组成" class="headerlink" title="动态生成类NSKVONotifyin_Person的内部组成"></a>动态生成类NSKVONotifyin_Person的内部组成</h3><p>首先我们知道，<code>NSKVONotifyin_Person</code>作为Person的子类，其superclass指针指向Person类，并且<code>NSKVONotifyin_Person</code>内部一定对setAge方法做了单独的实现，那么<code>NSKVONotifyin_Person</code>同Person类的差别可能就在于其内存储的对象方法及实现不同。<br> 我们通过runtime分别打印Person类对象和<code>NSKVONotifyin_Person</code>类对象内存储的对象方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line"></span><br><span class="line">    Person *p1 = [[Person alloc] init];</span><br><span class="line">    p1.age = <span class="number">1.0</span>;</span><br><span class="line">    Person *p2 = [[Person alloc] init];</span><br><span class="line">    p1.age = <span class="number">2.0</span>;</span><br><span class="line">    <span class="comment">// self 监听 p1的 age属性</span></span><br><span class="line">    <span class="built_in">NSKeyValueObservingOptions</span> options = <span class="built_in">NSKeyValueObservingOptionNew</span> | <span class="built_in">NSKeyValueObservingOptionOld</span>;</span><br><span class="line">    [p1 addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"age"</span> options:options context:<span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> printMethods: object_getClass(p2)];</span><br><span class="line">    [<span class="keyword">self</span> printMethods: object_getClass(p1)];</span><br><span class="line"></span><br><span class="line">    [p1 removeObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"age"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) printMethods:(Class)cls</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> count ;</span><br><span class="line">    Method *methods = class_copyMethodList(cls, &amp;count);</span><br><span class="line">    <span class="built_in">NSMutableString</span> *methodNames = [<span class="built_in">NSMutableString</span> string];</span><br><span class="line">    [methodNames appendFormat:<span class="string">@"%@ - "</span>, cls];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count; i++) &#123;</span><br><span class="line">        Method method = methods[i];</span><br><span class="line">        <span class="built_in">NSString</span> *methodName  = <span class="built_in">NSStringFromSelector</span>(method_getName(method));</span><br><span class="line">        </span><br><span class="line">        [methodNames appendString: methodName];</span><br><span class="line">        [methodNames appendString:<span class="string">@" "</span>];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,methodNames);</span><br><span class="line">    free(methods);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果为：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw4l1irymsj30i901gq3e.jpg" alt="NSKVONotifyin_Person内存储的对象方法"></p>
+<p>通过上述代码我们发现<code>NSKVONotifyin_Person</code>中有4个对象方法。分别为<code>setAge: class dealloc _isKVOA</code>，那么至此我们可以画出<code>NSKVONotifyin_Person</code>的内存结构以及方法调用顺序。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fw4l4no1f3j30sg0ghwg9.jpg" alt="NSKVONotifyin_Person的内存结构以及方法调用顺序"></p>
+<p>这里<code>NSKVONotifyin_Person</code>重写class方法是为了隐藏<code>NSKVONotifyin_Person</code>。不被外界所看到。我们在p1添加过KVO监听之后，分别打印p1和p2对象的class可以发现他们都返回Person。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@,%@"</span>,[p1 <span class="keyword">class</span>],[p2 <span class="keyword">class</span>]);</span><br><span class="line"><span class="comment">// 打印结果 Person,Person</span></span><br></pre></td></tr></table></figure>
+<p>如果<code>NSKVONotifyin_Person</code>不重写class方法，那么当对象要调用class对象方法的时候就会一直向上找来到NSObject，而NSObject的Class的实现大致为返回自己isa指向的类，返回p1的isa指向的类。那么打印出来的类就是<code>NSKVONotifyin_Person</code>，但是apple不希望将<code>NSKVONotifyin_Person</code>类暴露出来，并且不希望我们知道<code>NSKVONotifyin_Person</code>内部实现，所以在内部重写了class类，直接返回Person类，所以外界在调用p1的class对象方法时，是Person类。这样p1给外界的感觉p1还是Person类，并不知道NSKVONotifyin_Person子类的存在。</p>
+<p>那么我们可以猜测<code>NSKVONotifyin_Person</code>内重写的class内部实现大致为</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (Class) <span class="keyword">class</span> &#123;</span><br><span class="line">     <span class="comment">// 得到类对象，在找到类对象父类</span></span><br><span class="line">     <span class="keyword">return</span> class_getSuperclass(object_getClass(<span class="keyword">self</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##键值编码KVC</p>
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>KVC的操作方法由<code>NSKeyValueCoding</code>协议提供，而NSObject就实现了这个协议，也就是说ObjC中几乎所有的对象都支持KVC操作，常用的KVC操作方法如下：</p>
+<ul>
+<li>动态设置： <strong>setValue:属性值 forKey:属性名</strong>（用于简单路径）、<strong>setValue:属性值 forKeyPath:属性路径</strong>（用于复合路径，例如Person有一个Account类型的属性，那么person.account就是一个复合属性）</li>
+<li>动态读取： <strong>valueForKey:属性名</strong> 、<strong>valueForKeyPath:属性名</strong>（用于复合路径）</li>
+</ul>
+<h4 id="底层调用顺序"><a href="#底层调用顺序" class="headerlink" title="底层调用顺序"></a>底层调用顺序</h4><h5 id="setValue-forKey"><a href="#setValue-forKey" class="headerlink" title="setValue:forKey:"></a>setValue:forKey:</h5><ul>
+<li>首先调用setKey:方法对对应的key进行设置，如果没有找到setKey方法，则查找以下划线开头的方法_setKey</li>
+<li>如果第一步的两个方法实现都没找到，则会调用类方法<code>accessInstanceVariablesDirectly</code>询问能否直接访问成员变量，系统默认返回<code>YES</code>。</li>
+<li>如果第二步的方法中返回值为<code>YES</code>，则成员变量会按照以下顺序进行查找，<code>_key、_isKey、key、isKey</code>如果找到了直接进行赋值。</li>
+<li>如果第二步返回为<code>NO</code>,调用<code>setValue:forUndefinedKey:</code>并抛出异常<code>NSUnknownKeyException</code></li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fw4nh8y3dyj31kw0ls0z1.jpg" alt="setValue:forKey:方法调用顺序"></p>
+<h5 id="valueForKey"><a href="#valueForKey" class="headerlink" title="valueForKey:"></a>valueForKey:</h5><ul>
+<li>第一步是按照<code>getKey、key、 isKey、_key</code>的方法调用顺序去查找，如果找到直接调用对应的方法</li>
+<li>接下来调用<code>accessInstanceVariablesDirectly</code>询问是否能直接访问成员变量，系统默认返回的是<code>YES</code></li>
+<li>如果自己实现了第二步的方法，并且返回<code>NO</code>，则会调用<code>valueForUndefinedKey:</code>并抛出异常<code>NSUnknownKeyException</code>。否则执行第四步</li>
+<li>按照<code>_key、_isKey、key、isKey</code>顺序查找成员变量,如果找到了，直接取值。否则会调用<code>valueForUndefinedKey:</code>并抛出异常<code>NSUnknownKeyException</code>。</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fw4q7smnjdj318f0fy775.jpg" alt="valueForKey:方法调用顺序"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>KVO的本质是利用RuntimeAPI动态生成一个子类，并且让instance对象的isa指向这个全新的子类。当修改instance对象的属性时，会调用Foundation的_NSSetXXXValueAndNotify函数。此函数内部会调用如下的方法</p>
+<ul>
+<li>willChangeValueForKey:</li>
+<li>父类原来的setter</li>
+<li>didChangeValueForKey：</li>
+</ul>
+<p>最后一步内部会触发监听器（Oberser）的监听方法( observeValueForKeyPath:ofObject:change:context:）。</p>
+<p>所以这路我们可以得出一个结论，如果想要手动出发KVO，我们可以手动去调用<code>willChangeValueForKey:</code>和<code>didChangeValueForKey:</code>两个方法即可。因为KVO底层是通过调用set方法实现，所以如果直接修改成员变量的话，并不会触发KVO机制。</p>
+<p>最后，我们观察到，如果通过KVC的方式进行赋值的话，会触发KVO。根据上一节对KVC机制的分析我们得知，存在某些时刻KVC会直接访问成员变量而不是调用成员变量的set方法。但是这种情况下KVO依然有效的原因我们不难想象，肯定是在KVC直接访问成员变量的过程中，调用了<code>willChangeValueForKey:</code>和<code>didChangeValueForKey：</code>所致。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/category/" rel="tag"># category</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/关联对象/" rel="next" title="编辑器和服务器">
+                <i class="fa fa-chevron-left"></i> 编辑器和服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/UIStackView/" rel="prev" title="编辑器和服务器">
+                编辑器和服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KVO和KVC底层原理"><span class="nav-number">1.</span> <span class="nav-text">KVO和KVC底层原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#键值监听KVO"><span class="nav-number">1.1.</span> <span class="nav-text">键值监听KVO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础回顾"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部实现分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">内部实现分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KVO的本质"><span class="nav-number">1.1.3.</span> <span class="nav-text">KVO的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另一种验证思路"><span class="nav-number">1.1.4.</span> <span class="nav-text">另一种验证思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态生成类NSKVONotifyin-Person的内部组成"><span class="nav-number">1.1.5.</span> <span class="nav-text">动态生成类NSKVONotifyin_Person的内部组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#底层调用顺序"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">底层调用顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#setValue-forKey"><span class="nav-number">1.1.5.2.1.</span> <span class="nav-text">setValue:forKey:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#valueForKey"><span class="nav-number">1.1.5.2.2.</span> <span class="nav-text">valueForKey:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

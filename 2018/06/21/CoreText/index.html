@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="category,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CoreText 框架前言文章参考自唐巧《iOS开发进阶》，对其中的细节难点进行了补充说明。 使用 CoreText 技术，我们可以对富文本进行复杂的排版。经过一些简单的扩展，我们还可以实现对于图片，链接的点击效果。CoreText 技术相对于 UIWebView，有着更少的内存占用，以及可以在后台渲染的优点，非常适合用于内容的排版工作。 CoreText 简介CoreText 是用于处理文字和字">
+<meta name="keywords" content="category">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编辑器和服务器">
+<meta property="og:url" content="http://simplecoder.cn/2018/06/21/CoreText/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CoreText 框架前言文章参考自唐巧《iOS开发进阶》，对其中的细节难点进行了补充说明。 使用 CoreText 技术，我们可以对富文本进行复杂的排版。经过一些简单的扩展，我们还可以实现对于图片，链接的点击效果。CoreText 技术相对于 UIWebView，有着更少的内存占用，以及可以在后台渲染的优点，非常适合用于内容的排版工作。 CoreText 简介CoreText 是用于处理文字和字">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr78975z22j30l507o3zm.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr78950igoj30uu0t2aca.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fr78968zy9j30oo07kdgl.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr7896p54yj30dw09ggmc.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr7897n4iwj30dq0l00t1.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fr78984dimj30ky0ei0tp.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr7895sclhj30cf0o5jt8.jpg">
+<meta property="og:updated_time" content="2018-11-04T19:18:30.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编辑器和服务器">
+<meta name="twitter:description" content="CoreText 框架前言文章参考自唐巧《iOS开发进阶》，对其中的细节难点进行了补充说明。 使用 CoreText 技术，我们可以对富文本进行复杂的排版。经过一些简单的扩展，我们还可以实现对于图片，链接的点击效果。CoreText 技术相对于 UIWebView，有着更少的内存占用，以及可以在后台渲染的优点，非常适合用于内容的排版工作。 CoreText 简介CoreText 是用于处理文字和字">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr78975z22j30l507o3zm.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simplecoder.cn/2018/06/21/CoreText/">
+
+
+
+
+
+  <title>编辑器和服务器 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simplecoder.cn/2018/06/21/CoreText/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编辑器和服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T10:14:33+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CoreText-框架"><a href="#CoreText-框架" class="headerlink" title="CoreText 框架"></a>CoreText 框架</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>文章参考自唐巧<strong>《iOS开发进阶》</strong>，对其中的细节难点进行了补充说明。</p>
+<p>使用 CoreText 技术，我们可以对富文本进行复杂的排版。经过一些简单的扩展，我们还可以实现对于图片，链接的点击效果。CoreText 技术相对于 UIWebView，有着更少的内存占用，以及可以在后台渲染的优点，非常适合用于内容的排版工作。</p>
+<h2 id="CoreText-简介"><a href="#CoreText-简介" class="headerlink" title="CoreText 简介"></a>CoreText 简介</h2><p>CoreText 是用于处理文字和字体的底层技术。它直接和 Core Graphics（又被称为 Quartz）打交道。Quartz 是一个 2D 图形渲染引擎，能够处理 OSX 和 iOS 中的图形显示。</p>
+<p>Quartz 能够直接处理字体（font）和字形（glyphs），将文字渲染到界面上，它是基础库中唯一能够处理字形的模块。因此，CoreText 为了排版，需要将显示的文本内容、位置、字体、字形直接传递给 Quartz。相比其它 UI 组件，由于 CoreText 直接和 Quartz 来交互，所以它具有高速的排版效果。</p>
+<p>下图是 CoreText 的架构图，可以看到，CoreText 处于非常底层的位置，上层的 UI 控件（包括 UILabel，UITextField 以及 UITextView）和 UIWebView 都是基于 CoreText 来实现的。</p>
+<blockquote>
+<p>注意：这个是 iOS7 之后的架构图，在 iOS7 以前，并没有图中的 Text Kit 类，不过 CoreText 仍然是处在最底层直接和 Core Graphics 打交道的模块。</p>
+</blockquote>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr78975z22j30l507o3zm.jpg" alt="coretext_arch"></p>
+<p>UIWebView 也是处理复杂的文字排版的备选方案。对于排版，基于 CoreText 和基于 UIWebView 相比，前者有以下好处：</p>
+<ul>
+<li>CoreText 占用的内存更少，渲染速度快，UIWebView 占用的内存更多，渲染速度慢。</li>
+<li>CoreText 在渲染界面前就可以精确地获得显示内容的高度（只要有了 CTFrame 即可），而 UIWebView 只有渲染出内容后，才能获得内容的高度（而且还需要用 javascript 代码来获取）</li>
+<li>CoreText 的 CTFrame 可以在后台线程渲染，UIWebView 的内容只能在主线程（UI 线程）渲染。</li>
+<li>基于 CoreText 可以做更好的原生交互效果，交互效果可以更细腻。而 UIWebView 的交互效果都是用 javascript 来实现的，在交互效果上会有一些卡顿存在。例如，在 UIWebView 下，一个简单的按钮按下效果，都无法做到原生按钮的即时和细腻的按下效果。</li>
+</ul>
+<p>当然，基于 CoreText 的排版方案也有一些劣势：</p>
+<ul>
+<li>CoreText 渲染出来的内容不能像 UIWebView 那样方便地支持内容的复制。</li>
+<li>基于 CoreText 来排版需要自己处理很多复杂逻辑，例如需要自己处理图片与文字混排相关的逻辑，也需要自己实现链接点击操作的支持。</li>
+</ul>
+<h2 id="CoreText基本用法"><a href="#CoreText基本用法" class="headerlink" title="CoreText基本用法"></a>CoreText基本用法</h2><h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><h4 id="字体（Font）"><a href="#字体（Font）" class="headerlink" title="字体（Font）"></a>字体（Font）</h4><p>和我们平时说的字体不同，计算机意义上的字体表示的是同一大小，同一样式(Style)字形的集合。从这个意义上来说，当我们为文字设置粗体，斜体时其实是使用了另外一种字体(下划线不算)。而平时我们所说的字体只是具有相同设计属性的字体集合，即Font Family或typeface。 </p>
+<h4 id="字符-Character-和字形-Glyphs"><a href="#字符-Character-和字形-Glyphs" class="headerlink" title="字符(Character)和字形(Glyphs)"></a>字符(Character)和字形(Glyphs)</h4><p>排版过程中一个重要的步骤就是从字符到字形的转换，字符表示信息本身，而字形是它的图形表现形式。字符一般就是指某种编码，如Unicode编码，而字形则是这些编码对应的图片。但是他们之间不是一一对应关系，同个字符的不同字体族，不同字体大小，不同字体样式都对应了不同的字形。而由于连写(Ligatures)的存在，多个字符也会存在对应一个字形的情况。 </p>
+<p>下面就来详细看看字形的各个参数也就是所谓的字形度量Glyph Metrics  <img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr78950igoj30uu0t2aca.jpg" alt="20160830140956257"></p>
+<ul>
+<li><p>边界框 bbox(bounding box) </p>
+<p>这是一个假想的框子，它尽可能紧密的装入字形。</p>
+</li>
+<li><p>基线(baseline) </p>
+<p>一条假想的线,一行上的字形都以此线作为上下位置的参考，在这条线的左侧存在一个点叫做基线的原点， </p>
+</li>
+<li><p>上行高度(ascent) </p>
+<p>从原点到字体中最高（这里的高深都是以基线为参照线的）的字形的顶部的距离，ascent是一个正值</p>
+</li>
+<li><p>下行高度(descent) </p>
+<p>从原点到字体中最深的字形底部的距离，descent是一个负值（比如一个字体原点到最深的字形的底部的距离为2，那么descent就为-2）</p>
+</li>
+<li><p>行距(line gap) </p>
+<p>line gap也可以称作leading（其实准确点讲应该叫做External leading）,行高line Height则可以通过 ascent + |descent| + linegap 来计算。 </p>
+</li>
+<li><p>字间距(Kerning) </p>
+<p>字与字之间的距离，为了排版的美观，并不是所有的字形之间的距离都是一致的，但是这个基本步影响到我们的文字排版。 </p>
+</li>
+<li><p>基础原点(Origin) </p>
+<p>基线上最左侧的点。<img src="https://ws4.sinaimg.cn/large/006tNc79ly1fr78968zy9j30oo07kdgl.jpg" alt="20160830145626529"></p>
+<p>红框高度既为当前行的行高，绿线为baseline，绿色到红框上部分为当前行的最大Ascent，绿线到黄线为当前行的最大Desent，而黄框的高即为行间距。由此可以得出：lineHeight = Ascent + |Decent| + Leading。</p>
+</li>
+</ul>
+<h4 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h4><p>传统的Mac中的坐标系的原点在左下角，比如NSView默认的坐标系，原点就在左下角。但Mac中有些View为了其实现的便捷将原点变换到左上角，像NSTableView的坐标系坐标原点就在左上角。</p>
+<p>iOS UIKit中，UIView是以左上角为原点，而Core Text一开始的定位是使用与桌面应用的排版系统，桌面应用的坐标系是以左下角为原点，即Core Text在绘制的时候也是参照左下角为原点进行绘制的，所以需要对当前的坐标系进行处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//因为Core Text要配合Core Graphic 配合使用的，如Core Graphic一样，绘图的时候需要获得当前的上下文进行绘制</span><br><span class="line">CGContextRef context = UIGraphicsGetCurrentContext();</span><br><span class="line">//翻转当前的坐标系（因为对于底层绘制引擎来说，屏幕左下角为（0，0））</span><br><span class="line">//设置文本不进行变换</span><br><span class="line">CGContextSetTextMatrix(context, CGAffineTransformIdentity);</span><br><span class="line">//向下平移整个画布单位</span><br><span class="line">CGContextTranslateCTM(context, 0, self.bounds.size.height);</span><br><span class="line">//对平移后的画布进行翻转</span><br><span class="line">CGContextScaleCTM(context, 1.0, -1.0);</span><br></pre></td></tr></table></figure>
+<h3 id="CoreText对象模型"><a href="#CoreText对象模型" class="headerlink" title="CoreText对象模型"></a>CoreText对象模型</h3><p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr7896p54yj30dw09ggmc.jpg" alt="CTClasses-500x340"></p>
+<ol>
+<li><p>CTFramesetterRef</p>
+<p>通过CFAttributedStringRef进行初始化，它作为CTFrame对象的生产工厂，负责根据path生产对应的CTFrame；</p>
+</li>
+<li><p>CTFrame</p>
+<p>CTFrame是可以通过CTFrameDraw函数直接绘制到context上的，当然你可以在绘制之前，操作CTFrame中的CTLine，进行一些参数的微调；</p>
+</li>
+<li><p>CTLine</p>
+<p>在CTFrame内部是由多个CTLine来组成的，每个CTLine代表一行；可以看做Core Text绘制中的一行的对象，通过它可以获得当前行的line ascent,line descent ,line leading,还可以获得Line下的所有Glyph Runs；</p>
+</li>
+<li><p>CTRun</p>
+<p>或者叫做 Glyph Run，每个CTLine又是由多个CTRun组成的，每个CTRun代表一组显示风格一致的文本，是一组共享想相同attributes（属性）的字形的集合体；</p>
+</li>
+</ol>
+<p>总结：</p>
+<p>CTFramesetter是由CFAttributedString(NSAttributedString)初始化而来，可以认为它是CTFrame的一个Factory，通过传入CGPath生成相应的CTFrame并使用它进行渲染：直接以CTFrame为参数使用CTFrameDraw绘制或者从CTFrame中获取CTLine进行微调后使用CTLineDraw进行绘制。CTFrame 作为一个整体的画布(Canvas)，其中由行(CTLine)组成，而每行可以分为一个或多个小方块（CTRun）。</p>
+<blockquote>
+<p>注意：你不需要自己创建CTRun，Core Text将根据NSAttributedString的属性来自动创建CTRun。每个CTRun对象对应不同的属性，正因此，你可以自由的控制字体、颜色、字间距等等信息。</p>
+</blockquote>
+<h3 id="通常的处理步骤"><a href="#通常的处理步骤" class="headerlink" title="通常的处理步骤"></a>通常的处理步骤</h3><ol>
+<li>获取上下文</li>
+<li>翻转坐标系</li>
+<li>创建NSAttributedString</li>
+<li>根据NSAttributedString创建CTFramesetterRef</li>
+<li>创建绘制区域CGPathRef（该CGPathRef是库CoreGraphics里边的，初始原点为左上角；翻转后，原点为左下角）</li>
+<li>根据CTFramesetterRef和CGPathRef创建CTFrame</li>
+<li>CTFrameDraw绘制。</li>
+</ol>
+<h2 id="CoreText示例程序"><a href="#CoreText示例程序" class="headerlink" title="CoreText示例程序"></a>CoreText示例程序</h2><p>首先从一个简单的绘制文字示例开始：</p>
+<p>自定义一个<code>CTDisplayView</code>，让其 import 头文件<code>CoreText/CoreText.h</code>，接着输入以下代码来实现其<code>drawRect</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CTDisplayView.h&quot;</span><br><span class="line">#import &quot;CoreText/CoreText.h&quot;</span><br><span class="line">@implementation CTDisplayView</span><br><span class="line">- (void)drawRect:(CGRect)rect</span><br><span class="line">&#123;</span><br><span class="line">    [super drawRect:rect];</span><br><span class="line">    // 步骤 1</span><br><span class="line">    //因为Core Text要配合Core Graphic 配合使用的，如Core Graphic一样，绘图的时候需要获得当前的上下文		进行绘制</span><br><span class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</span><br><span class="line">    // 步骤 2</span><br><span class="line">    //翻转当前的坐标系（因为对于底层绘制引擎来说，屏幕左下角为（0，0））</span><br><span class="line">	//设置文本不进行变换</span><br><span class="line">    CGContextSetTextMatrix(context, CGAffineTransformIdentity);</span><br><span class="line">    //向下平移整个画布单位</span><br><span class="line">    CGContextTranslateCTM(context, 0, self.bounds.size.height);</span><br><span class="line">    //对平移后的画布进行翻转</span><br><span class="line">    CGContextScaleCTM(context, 1.0, -1.0);</span><br><span class="line">    // 步骤 3</span><br><span class="line">    //创建画布边框路径</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGPathAddRect(path, NULL, self.bounds);</span><br><span class="line">    // 步骤 4</span><br><span class="line">    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@&quot;Hello World!&quot;];</span><br><span class="line">    //通过NSAttributedString创建framesetter</span><br><span class="line">    CTFramesetterRef framesetter =</span><br><span class="line">    CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attString);</span><br><span class="line">    //创建CTFrame对象，这里第二个参数为一个Range范围用来确定framesetter。一般传入字符串的长度，如果设为0的话那么framesetter将继续添加行直到它用完文本或空间。第四个参数为其他属性，一般不需要，设为NULL即可。</span><br><span class="line">    CTFrameRef frame =</span><br><span class="line">    CTFramesetterCreateFrame(framesetter,</span><br><span class="line">                             CFRangeMake(0, [attString length]), path, NULL);</span><br><span class="line">    // 步骤 5 绘制</span><br><span class="line">    CTFrameDraw(frame, context);</span><br><span class="line">    // 步骤 6 </span><br><span class="line">    //CoreFoundation需要自己手动管理内存</span><br><span class="line">    CFRelease(frame);</span><br><span class="line">    CFRelease(path);</span><br><span class="line">    CFRelease(framesetter);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>运行结果：<img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr7897n4iwj30dq0l00t1.jpg" alt="coretext-5"></p>
+<h3 id="排版引擎框架"><a href="#排版引擎框架" class="headerlink" title="排版引擎框架"></a>排版引擎框架</h3><p>上面的 示例仅仅展示了 Core Text 排版的基本能力。但是要制作一个较完善的排版引擎，我们不能简单的将所有代码都放到 <code>CTDisplayView</code> 的<code>drawRect</code>方法里面。根据设计模式中的 “ 单一功能原则 “(<code>Single responsibility principle</code>)，我们应该把功能拆分，把不同的功能都放到各自不同的类里面。</p>
+<p>对于一个复杂的排版引擎来说，可以将其功能拆成以下几个类来完成：</p>
+<ol>
+<li>一个显示用的类，仅负责显示内容，不负责排版</li>
+<li>一个模型类，用于承载显示所需要的所有数据</li>
+<li>一个排版类，用于实现文字内容的排版</li>
+<li>一个配置类，用于实现一些排版时的可配置项</li>
+</ol>
+<p>注：” 单一功能原则 “参考链接 <a href="http://zh.wikipedia.org/wiki/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">Single responsibility principle</a></p>
+<p>按照以上原则，我们将<code>CTDisplayView</code>中的部分内容拆开，由 4 个类构成：</p>
+<ol>
+<li><code>CTFrameParserConfig</code>类，用于配置绘制的参数，例如：文字颜色，大小，行间距等。</li>
+<li><code>CTFrameParser</code>类，用于生成最后绘制界面需要的<code>CTFrameRef</code>实例。</li>
+<li><code>CoreTextData</code>类，用于保存由<code>CTFrameParser</code>类生成的<code>CTFrameRef</code>实例以及<code>CTFrameRef</code>实际绘制需要的高度。</li>
+<li><code>CTDisplayView</code>类，持有<code>CoreTextData</code>类的实例，负责将<code>CTFrameRef</code>绘制到界面上。</li>
+</ol>
+<p>关于这 4 个类的关键代码如下：</p>
+<p><code>CTFrameParserConfig</code>类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface CTFrameParserConfig : NSObject</span><br><span class="line">/**</span><br><span class="line"> 颜色</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, strong) UIColor *textColor;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 宽度</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign) CGFloat width;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 字号</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign) CGFloat fontSize;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 行高</span><br><span class="line"> */</span><br><span class="line">@property (nonatomic, assign) CGFloat lineSpace;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CTFrameParserConfig.h&quot;</span><br><span class="line">#import &quot;UIColor+Extend.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CTFrameParserConfig</span><br><span class="line"></span><br><span class="line">- (id)init &#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        _width = 200.0f;</span><br><span class="line">        _fontSize = 16.0f;</span><br><span class="line">        _lineSpace = 8.0f;</span><br><span class="line">        _textColor = [UIColor colorFromHexRGB:@&quot;333333&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CTFrameParser</code>类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line">#import &quot;CTFrameParserConfig.h&quot;</span><br><span class="line">@interface CTFrameParser : NSObject</span><br><span class="line">+ (CoreTextData *)parseContent:(NSString *)content config:(CTFrameParserConfig*)config;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CTFrameParser.h&quot;</span><br><span class="line">#import &quot;CTFrameParserConfig.h&quot;</span><br><span class="line">@implementation CTFrameParser</span><br><span class="line">+ (NSDictionary *)attributesWithConfig:(CTFrameParserConfig *)config &#123;</span><br><span class="line">    //创建字体 包括字形和大小</span><br><span class="line">    CGFloat fontSize = config.fontSize;</span><br><span class="line">    CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@&quot;ArialMT&quot;, fontSize, NULL);</span><br><span class="line">    //行高</span><br><span class="line">    CGFloat lineSpacing = config.lineSpace;</span><br><span class="line">    //段落属性</span><br><span class="line">    const CFIndex kNumberOfSettings = 3;</span><br><span class="line">    //创建段落属性的结构体数组 具体的段落属性值参考苹果官方文档</span><br><span class="line">    CTParagraphStyleSetting theSettings[kNumberOfSettings] = &#123;</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat), &amp;lineSpacing &#125;,</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(CGFloat), &amp;lineSpacing &#125;,</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(CGFloat), &amp;lineSpacing &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    //创建段落属性</span><br><span class="line">    CTParagraphStyleRef theParagraphRef = CTParagraphStyleCreate(theSettings, kNumberOfSettings);</span><br><span class="line">    UIColor * textColor = config.textColor;</span><br><span class="line">    NSMutableDictionary * dict = [NSMutableDictionary dictionary];</span><br><span class="line">    dict[(id)kCTForegroundColorAttributeName] = (id)textColor.CGColor;</span><br><span class="line">    dict[(id)kCTFontAttributeName] = (__bridge id)fontRef;</span><br><span class="line">    dict[(id)kCTParagraphStyleAttributeName] = (__bridge id)theParagraphRef;</span><br><span class="line">    CFRelease(theParagraphRef);</span><br><span class="line">    CFRelease(fontRef);</span><br><span class="line">    return dict;</span><br><span class="line">&#125;</span><br><span class="line">+ (CoreTextData *)parseContent:(NSString *)content config:(CTFrameParserConfig*)config &#123;</span><br><span class="line">    NSDictionary *attributes = [self attributesWithConfig:config];</span><br><span class="line">    NSAttributedString *contentString =</span><br><span class="line">        [[NSAttributedString alloc] initWithString:content</span><br><span class="line">                                        attributes:attributes];</span><br><span class="line">    // 创建 CTFramesetterRef 实例</span><br><span class="line">    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)contentString);</span><br><span class="line">    // 获得要绘制的区域的高度</span><br><span class="line">    CGSize restrictSize = CGSizeMake(config.width, CGFLOAT_MAX);</span><br><span class="line">    CGSize coreTextSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0,0), nil, restrictSize, nil);</span><br><span class="line">    CGFloat textHeight = coreTextSize.height;</span><br><span class="line">    // 生成 CTFrameRef 实例</span><br><span class="line">    CTFrameRef frame = [self createFrameWithFramesetter:framesetter config:config height:textHeight];</span><br><span class="line">    // 将生成好的 CTFrameRef 实例和计算好的绘制高度保存到 CoreTextData 实例中，最后返回 CoreTextData 实例</span><br><span class="line">    CoreTextData *data = [[CoreTextData alloc] init];</span><br><span class="line">    data.ctFrame = frame;</span><br><span class="line">    data.height = textHeight;</span><br><span class="line">    // 释放内存</span><br><span class="line">    CFRelease(frame);</span><br><span class="line">    CFRelease(framesetter);</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line">+ (CTFrameRef)createFrameWithFramesetter:(CTFramesetterRef)framesetter</span><br><span class="line">                                  config:(CTFrameParserConfig *)config</span><br><span class="line">                                  height:(CGFloat)height &#123;</span><br><span class="line">    //画布的路径（轮廓或者范围）</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGPathAddRect(path, NULL, CGRectMake(0, 0, config.width, height));</span><br><span class="line">    //最终生成绘制需要的frame，第二个参数表示文本范围，CFRangeMake(0,0)代表整个文本，最后一个参数为开发	   者自定义额外的属性，不需要填NULL即可。</span><br><span class="line">    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);</span><br><span class="line">    CFRelease(path);</span><br><span class="line">    return frame;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CoreTextData</code>类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">@interface CoreTextData : NSObject</span><br><span class="line">@property (assign, nonatomic) CTFrameRef ctFrame;</span><br><span class="line">@property (assign, nonatomic) CGFloat height;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line">@implementation CoreTextData</span><br><span class="line">// CTFrameRef 属于CoreText框架，需要自己手动管理内存。ARC机制在此不在适用，所以需要重写Settter</span><br><span class="line">- (void)setCtFrame:(CTFrameRef)ctFrame &#123;</span><br><span class="line">    if (_ctFrame != ctFrame) &#123;</span><br><span class="line">        if (_ctFrame != nil) &#123;</span><br><span class="line">            CFRelease(_ctFrame);</span><br><span class="line">        &#125;</span><br><span class="line">        CFRetain(ctFrame);</span><br><span class="line">        _ctFrame = ctFrame;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    if (_ctFrame != nil) &#123;</span><br><span class="line">        CFRelease(_ctFrame);</span><br><span class="line">        _ctFrame = nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CTDisplayView</code>类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line">@interface CTDisplayView : UIView</span><br><span class="line">@property (strong, nonatomic) CoreTextData * data;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CTDisplayView.h&quot;</span><br><span class="line">@implementation CTDisplayView</span><br><span class="line">- (void)drawRect:(CGRect)rect</span><br><span class="line">&#123;</span><br><span class="line">    [super drawRect:rect];</span><br><span class="line">   //因为Core Text要配合Core Graphic 配合使用的，如Core Graphic一样，绘图的时候需要获得当前的上下文进行绘制</span><br><span class="line">    CGContextRef context = UIGraphicsGetCurrentContext();</span><br><span class="line">    //翻转当前的坐标系（因为对于底层绘制引擎来说，屏幕左下角为（0，0））</span><br><span class="line">    //设置文本不进行变换</span><br><span class="line">    CGContextSetTextMatrix(context, CGAffineTransformIdentity);</span><br><span class="line">    //向下平移整个画布单位</span><br><span class="line">    CGContextTranslateCTM(context, 0, self.bounds.size.height);</span><br><span class="line">    //对平移后的画布进行翻转</span><br><span class="line">    CGContextScaleCTM(context, 1.0, -1.0);</span><br><span class="line">    if (self.data) &#123;</span><br><span class="line">        //绘制</span><br><span class="line">        CTFrameDraw(self.data.ctFrame, context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>以下是本框架的 UML 示意图，从图中我们可以看出，这 4 个 Core Text 类的关系是这样的：</p>
+<ol>
+<li><code>CTFrameParser</code>通过<code>CTFrameparserConfig</code>实例来生成<code>CoreTextData</code>实例。</li>
+<li><code>CTDisplayView</code>通过持有<code>CoreTextData</code>实例来获得绘制所需要的所有信息。</li>
+<li><code>ViewController</code>类通过配置<code>CTFrameparserConfig</code>实例，进而获得生成的<code>CoreTextData</code>实例，最后将其赋值给他的<code>CTDisplayView</code>成员，达到将指定内容显示在界面上的效果。</li>
+</ol>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fr78984dimj30ky0ei0tp.jpg" alt="coretext-uml"></p>
+<h3 id="定制排版文件格式"><a href="#定制排版文件格式" class="headerlink" title="定制排版文件格式"></a>定制排版文件格式</h3><p>对于上面的例子，我们给 CTFrameParser 使增加了一个将 NSString 转换为 CoreTextData 的方法。但这样的实现方式有很多局限性，因为整个内容虽然可以定制字体大小，颜色，行高等信息，但是却不能支持定制内容中的某一部分。例如，如果我们只想让内容的前三个字显示成红色，而其它文字显示成黑色，那么就办不到了。下面的示例程序中，我们通过解析一个json格式的文件来说明实现部分字体自定义、图文混排，点击事件的方法。</p>
+<p>下面是我们需要的json模板，开发者可根据自己的排版需求定制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[ &#123; </span><br><span class="line">    &quot;type&quot; : &quot;img&quot;,</span><br><span class="line">    &quot;width&quot; : 300,</span><br><span class="line">    &quot;height&quot; : 160,</span><br><span class="line">    &quot;name&quot; : &quot;coretext-image-1.jpg&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;blue&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;对于上面的例子，我们给 CTFrameParser 使增加了一个将 NSString 转换为 CoreTextData 的方法 &quot;,</span><br><span class="line">    &quot;size&quot; : 16,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;red&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;内容、颜色、字体&quot;,</span><br><span class="line">    &quot;size&quot; : 22,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;black&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;大小等信息。\n&quot;,</span><br><span class="line">    &quot;size&quot; : 16,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;下面的示例程序中，我们通过解析一个json格式的文件来说明实现部分字体自定义、图文混排，点击事件的方法。&quot;,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; </span><br><span class="line">    &quot;type&quot; : &quot;img&quot;,</span><br><span class="line">    &quot;width&quot; : 50,</span><br><span class="line">    &quot;height&quot; : 32,</span><br><span class="line">    &quot;name&quot; : &quot;coretext-image-2.jpg&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;这在这里尝试放一个参考链接：&quot;,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;blue&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;链接文字&quot;,</span><br><span class="line">    &quot;url&quot; : &quot;https://www.baidu.com&quot;,</span><br><span class="line">    &quot;type&quot; : &quot;link&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; &quot;color&quot; : &quot;default&quot;,</span><br><span class="line">    &quot;content&quot; : &quot;大家可以尝试点击一下&quot;,</span><br><span class="line">    &quot;type&quot; : &quot;txt&quot;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里首先解释一下，为什么需要这个json格式的文件。通常情况下，我们进行图文混排的时候，都需要找出string中需要特别处理的substring。比如我们Demo中的“内容、颜色、字体”，作为文本内容的一部分，需要显示为红色而不同于文本整体的颜色。这里如果后台传给我们的数据如果只是纯文本的话，我们就可能需要利用正则表达式去整个文本中去寻找需要着色的文本。相比于这种直接给出substring属性的的方式，用正则表达式可能解析起来更麻烦。关于正则表达式可参考链接 <a href="https://blog.csdn.net/crayondeng/article/details/16991579" target="_blank" rel="noopener">iOS正则表达式</a>这里不做赘述。本文采用解析json文件的方式进行绘制。</p>
+</blockquote>
+<p>先来看下Demo实现的效果</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr7895sclhj30cf0o5jt8.jpg" alt="QQ20180511-103712"></p>
+<p>其中，点击图片部分会弹出图片大图浏览器，点击链接文字会跳转到指定的链接。</p>
+<h3 id="示例程序关键代码解读"><a href="#示例程序关键代码解读" class="headerlink" title="示例程序关键代码解读"></a>示例程序关键代码解读</h3><p><code>CTFrameParserConfig</code>类:和上文一样，负责文本属性的全局配置</p>
+<p><code>CTFrameParser</code>类：增加一个方法，让其可以从如上格式的模版文件中生成<code>CoreTextData</code>。最终我们的实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line"></span><br><span class="line">@interface CTFrameParser : NSObject</span><br><span class="line"></span><br><span class="line">+ (CoreTextData *)parseTemplateFile:(NSString *)path config:(CTFrameParserConfig *)config;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CTFrameParser.h&quot;</span><br><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line">#import &quot;CTFrameParserConfig.h&quot;</span><br><span class="line">#import &quot;CoreTextImageData.h&quot;</span><br><span class="line">#import &quot;CoreTextLinkData.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CTFrameParser</span><br><span class="line"></span><br><span class="line">// CTRun代理方法，获取当前run的上行高度</span><br><span class="line">static CGFloat ascentCallback(void *ref)&#123;</span><br><span class="line">    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@&quot;height&quot;] floatValue];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// CTRun代理方法，获取当前run的下行高度</span><br><span class="line">static CGFloat descentCallback(void *ref)&#123;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// CTRun代理方法，获取当前run的宽度</span><br><span class="line">static CGFloat widthCallback(void* ref)&#123;</span><br><span class="line">    return [(NSNumber*)[(__bridge NSDictionary*)ref objectForKey:@&quot;width&quot;] floatValue];</span><br><span class="line">&#125;</span><br><span class="line">//全局配置</span><br><span class="line">+ (NSMutableDictionary *)attributesWithConfig:(CTFrameParserConfig *)config &#123;</span><br><span class="line">    CGFloat fontSize = config.fontSize;</span><br><span class="line">    //创建字体 包括字形和大小</span><br><span class="line">    CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@&quot;ArialMT&quot;, fontSize, NULL);</span><br><span class="line">    //行高</span><br><span class="line">    CGFloat lineSpacing = config.lineSpace;</span><br><span class="line">    //段落属性</span><br><span class="line">    const CFIndex kNumberOfSettings = 3;</span><br><span class="line">    //创建段落属性的结构体数组 具体的段落属性值参考苹果官方文档</span><br><span class="line">    CTParagraphStyleSetting theSettings[kNumberOfSettings] = &#123;</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat), &amp;lineSpacing &#125;,</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(CGFloat), &amp;lineSpacing &#125;,</span><br><span class="line">        &#123; kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(CGFloat), &amp;lineSpacing &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    //创建段落属性</span><br><span class="line">    CTParagraphStyleRef theParagraphRef = CTParagraphStyleCreate(theSettings, kNumberOfSettings);</span><br><span class="line">    </span><br><span class="line">    UIColor * textColor = config.textColor;</span><br><span class="line">    //属性放入字典</span><br><span class="line">    NSMutableDictionary * dict = [NSMutableDictionary dictionary];</span><br><span class="line">    dict[(id)kCTForegroundColorAttributeName] = (id)textColor.CGColor;</span><br><span class="line">    dict[(id)kCTFontAttributeName] = (__bridge id)fontRef;</span><br><span class="line">    dict[(id)kCTParagraphStyleAttributeName] = (__bridge id)theParagraphRef;</span><br><span class="line">    //内存管理</span><br><span class="line">    CFRelease(theParagraphRef);</span><br><span class="line">    CFRelease(fontRef);</span><br><span class="line">    return dict;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 对外接口，传入json文件路径和全局配置，返回绘制需要的CoreTextData对象</span><br><span class="line">+ (CoreTextData *)parseTemplateFile:(NSString *)path config:(CTFrameParserConfig*)config &#123;</span><br><span class="line">    //存放图片CoreTextImageData</span><br><span class="line">    NSMutableArray *imageArray = [NSMutableArray array];</span><br><span class="line">    //存放链接CoreTextImageData</span><br><span class="line">    NSMutableArray *linkArray = [NSMutableArray array];</span><br><span class="line">    //解析json文件，获取绘制需要的AttributedString</span><br><span class="line">    NSAttributedString *content = [self loadTemplateFile:path config:config</span><br><span class="line">                                              imageArray:imageArray linkArray:linkArray];</span><br><span class="line">    //根据AttributedString来创建CoreTextData</span><br><span class="line">    CoreTextData *data = [self parseAttributedContent:content config:config];</span><br><span class="line">    data.imageArray = imageArray;</span><br><span class="line">    data.linkArray = linkArray;</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//解析json文件，获取绘制需要的AttributedString</span><br><span class="line">+ (NSAttributedString *)loadTemplateFile:(NSString *)path</span><br><span class="line">                                  config:(CTFrameParserConfig*)config</span><br><span class="line">                              imageArray:(NSMutableArray *)imageArray</span><br><span class="line">                               linkArray:(NSMutableArray *)linkArray &#123;</span><br><span class="line">    //json解析</span><br><span class="line">    NSData *data = [NSData dataWithContentsOfFile:path];</span><br><span class="line">    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];</span><br><span class="line">    if (data) &#123;</span><br><span class="line">        NSArray *array = [NSJSONSerialization JSONObjectWithData:data</span><br><span class="line">                                                         options:NSJSONReadingAllowFragments</span><br><span class="line">                                                           error:nil];</span><br><span class="line">        if ([array isKindOfClass:[NSArray class]]) &#123;</span><br><span class="line">            for (NSDictionary *dict in array) &#123;</span><br><span class="line">                NSString *type = dict[@&quot;type&quot;];</span><br><span class="line">                if ([type isEqualToString:@&quot;txt&quot;]) &#123;</span><br><span class="line">                    //纯文本的处理</span><br><span class="line">                    //此方法作用：1、内部首先会调用attributesWithConfig增加全局属性 2、根据解析结果给对应的文本增加Attribute</span><br><span class="line">                    NSAttributedString *as = [self parseAttributedContentFromNSDictionary:dict</span><br><span class="line">                                                                                   config:config];</span><br><span class="line">                    [result appendAttributedString:as];</span><br><span class="line">                &#125; else if ([type isEqualToString:@&quot;img&quot;]) &#123;</span><br><span class="line">                    //图片</span><br><span class="line">                    // 创建 CoreTextImageData用于存放图片属性</span><br><span class="line">                    CoreTextImageData *imageData = [[CoreTextImageData alloc] init];</span><br><span class="line">                    imageData.name = dict[@&quot;name&quot;];</span><br><span class="line">                    //result的长度即为图片的range.location</span><br><span class="line">                    imageData.position = [result length];</span><br><span class="line">                    [imageArray addObject:imageData];</span><br><span class="line">                    // 创建空白占位符，并且设置它的CTRunDelegate信息. 对于图片的排版，其实 CoreText 本质上不是直接支持的，但是，我们可以在要显示文本的地方，用一个特殊的空白字符代替，同时设置该字体的CTRunDelegate信息为要显示的图片的宽度和高度信息，这样最后生成的CTFrame实例，就会在绘制时将图片的位置预留出来。</span><br><span class="line">                    //因为我们的CTDisplayView的绘制代码是在drawRect里面的，所以我们可以方便地把需要绘制的图片，用CGContextDrawImage方法直接绘制出来就可以了。</span><br><span class="line">                    //此处最终的返回字符串为与需要绘制图片同等大小的占位符（空白字符）</span><br><span class="line">                    NSAttributedString *as = [self parseImageDataFromNSDictionary:dict config:config];</span><br><span class="line">                    [result appendAttributedString:as];</span><br><span class="line">                &#125; else if ([type isEqualToString:@&quot;link&quot;]) &#123;</span><br><span class="line">                    //链接处理</span><br><span class="line">                    //链接开始位置的index为拼接之前的长度</span><br><span class="line">                    NSUInteger startPos = result.length;</span><br><span class="line">                    //同纯文本处理方式</span><br><span class="line">                    NSAttributedString *as = [self parseAttributedContentFromNSDictionary:dict</span><br><span class="line">                                                                                   config:config];</span><br><span class="line">                    [result appendAttributedString:as];</span><br><span class="line">                    // 创建 CoreTextLinkData</span><br><span class="line">                    NSUInteger length = result.length - startPos;</span><br><span class="line">                    //计算出链接在整个文本中的Range保存到linkData中，目的是方便判断点击位置是否在链接的范围内，在的话则跳转对应的链接。</span><br><span class="line">                    NSRange linkRange = NSMakeRange(startPos, length);</span><br><span class="line">                    CoreTextLinkData *linkData = [[CoreTextLinkData alloc] init];</span><br><span class="line">                    linkData.title = dict[@&quot;content&quot;];</span><br><span class="line">                    linkData.url = dict[@&quot;url&quot;];</span><br><span class="line">                    linkData.range = linkRange;</span><br><span class="line">                    [linkArray addObject:linkData];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//解析图片数据，设置CTRun的代理。（图文混排核心内容）</span><br><span class="line">+ (NSAttributedString *)parseImageDataFromNSDictionary:(NSDictionary *)dict</span><br><span class="line">                                                config:(CTFrameParserConfig*)config &#123;</span><br><span class="line">    //结构体类型，其中包含了CTRun的所有回调函数</span><br><span class="line">    CTRunDelegateCallbacks callbacks;</span><br><span class="line">    //给结构体分配内存空间</span><br><span class="line">    memset(&amp;callbacks, 0, sizeof(CTRunDelegateCallbacks));</span><br><span class="line">    //文档解释为 This field should always be set to kCTRunDelegateCurrentVersion. 传入kCTRunDelegateVersion1即可 （kCTRunDelegateCurrentVersion = kCTRunDelegateVersion1）</span><br><span class="line">    callbacks.version = kCTRunDelegateVersion1;</span><br><span class="line">    //设置获取文字上行高度的回调方法</span><br><span class="line">    callbacks.getAscent = ascentCallback;</span><br><span class="line">    //设置获取文字下行高度的回调方法</span><br><span class="line">    callbacks.getDescent = descentCallback;</span><br><span class="line">    //设置获取文字宽度的回调方法</span><br><span class="line">    callbacks.getWidth = widthCallback;</span><br><span class="line">    //创建代理，传入回调方法结构体。第二个参数可以随便填写我们需要传入的数据，注意类型为void *</span><br><span class="line">    CTRunDelegateRef delegate = CTRunDelegateCreate(&amp;callbacks, (__bridge void *)(dict));</span><br><span class="line">    </span><br><span class="line">    // 使用0xFFFC作为空白的占位符</span><br><span class="line">    unichar objectReplacementChar = 0xFFFC;</span><br><span class="line">    NSString * content = [NSString stringWithCharacters:&amp;objectReplacementChar length:1];</span><br><span class="line">    NSDictionary * attributes = [self attributesWithConfig:config];</span><br><span class="line">    //给字符添加全局属性</span><br><span class="line">    NSMutableAttributedString * space = [[NSMutableAttributedString alloc] initWithString:content</span><br><span class="line">                                                                               attributes:attributes];</span><br><span class="line">    //设置代理</span><br><span class="line">    CFAttributedStringSetAttribute((CFMutableAttributedStringRef)space, CFRangeMake(0, 1),</span><br><span class="line">                                   kCTRunDelegateAttributeName, delegate);</span><br><span class="line">    //内存管理</span><br><span class="line">    CFRelease(delegate);</span><br><span class="line">    return space;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//解析原始数据，返回AttributedString</span><br><span class="line">+ (NSAttributedString *)parseAttributedContentFromNSDictionary:(NSDictionary *)dict</span><br><span class="line">                                                        config:(CTFrameParserConfig*)config &#123;</span><br><span class="line">    //增加全局属性</span><br><span class="line">    NSMutableDictionary *attributes = [self attributesWithConfig:config];</span><br><span class="line">    </span><br><span class="line">    // 以下为增加自定义属性</span><br><span class="line">    </span><br><span class="line">    //根据字典的key值返回对应的颜色</span><br><span class="line">    UIColor *color = [self colorFromTemplate:dict[@&quot;color&quot;]];</span><br><span class="line">    if (color) &#123;</span><br><span class="line">        attributes[(id)kCTForegroundColorAttributeName] = (id)color.CGColor;</span><br><span class="line">    &#125;</span><br><span class="line">    // 设置字体大小</span><br><span class="line">    CGFloat fontSize = [dict[@&quot;size&quot;] floatValue];</span><br><span class="line">    if (fontSize &gt; 0) &#123;</span><br><span class="line">        //创建字体对象，包含了字形和字体大小</span><br><span class="line">        CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@&quot;ArialMT&quot;, fontSize, NULL);</span><br><span class="line">        attributes[(id)kCTFontAttributeName] = (__bridge id)fontRef;</span><br><span class="line">        CFRelease(fontRef);</span><br><span class="line">    &#125;</span><br><span class="line">    NSString *content = dict[@&quot;content&quot;];</span><br><span class="line">    //返回经过自定义需要局部处理的字符串</span><br><span class="line">    return [[NSAttributedString alloc] initWithString:content attributes:attributes];</span><br><span class="line">&#125;</span><br><span class="line">//根据字典的key值返回对应的颜色</span><br><span class="line">+ (UIColor *)colorFromTemplate:(NSString *)name &#123;</span><br><span class="line">    if ([name isEqualToString:@&quot;blue&quot;]) &#123;</span><br><span class="line">        return [UIColor blueColor];</span><br><span class="line">    &#125; else if ([name isEqualToString:@&quot;red&quot;]) &#123;</span><br><span class="line">        return [UIColor redColor];</span><br><span class="line">    &#125; else if ([name isEqualToString:@&quot;black&quot;]) &#123;</span><br><span class="line">        return [UIColor blackColor];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 根据之前解析出来的AttributedString创建绘制所需要的CoreTextData</span><br><span class="line">+ (CoreTextData *)parseAttributedContent:(NSAttributedString *)content config:(CTFrameParserConfig*)config &#123;</span><br><span class="line">    // 创建CTFramesetterRef实例</span><br><span class="line">    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)content);</span><br><span class="line">    </span><br><span class="line">    // 获得要绘制的区域的高度</span><br><span class="line">    CGSize restrictSize = CGSizeMake(config.width, CGFLOAT_MAX);</span><br><span class="line">    //第二个参数表示文本范围，CFRangeMake(0,0)代表整个文本</span><br><span class="line">    CGSize coreTextSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0,0), nil, restrictSize, nil);</span><br><span class="line">    CGFloat textHeight = coreTextSize.height;</span><br><span class="line">    </span><br><span class="line">    // 生成CTFrameRef实例</span><br><span class="line">    CTFrameRef frame = [self createFrameWithFramesetter:framesetter config:config height:textHeight];</span><br><span class="line">    </span><br><span class="line">    // 将生成好的CTFrameRef实例和计算好的缓制高度保存到CoreTextData实例中，最后返回CoreTextData实例</span><br><span class="line">    CoreTextData *data = [[CoreTextData alloc] init];</span><br><span class="line">    data.ctFrame = frame;</span><br><span class="line">    data.height = textHeight;</span><br><span class="line">    data.content = content;</span><br><span class="line">    </span><br><span class="line">    // 释放内存</span><br><span class="line">    CFRelease(frame);</span><br><span class="line">    CFRelease(framesetter);</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//创建CTFrameRef实例</span><br><span class="line">+ (CTFrameRef)createFrameWithFramesetter:(CTFramesetterRef)framesetter</span><br><span class="line">                                  config:(CTFrameParserConfig *)config</span><br><span class="line">                                  height:(CGFloat)height &#123;</span><br><span class="line">    //画布的路径（轮廓或者范围）</span><br><span class="line">    CGMutablePathRef path = CGPathCreateMutable();</span><br><span class="line">    CGPathAddRect(path, NULL, CGRectMake(0, 0, config.width, height));</span><br><span class="line">    //最终生成绘制需要的frame，第二个参数表示文本范围，CFRangeMake(0,0)代表整个文本，最后一个参数为开发者自定义额外的属性，不需要填NULL即可。</span><br><span class="line">    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);</span><br><span class="line">    CFRelease(path);</span><br><span class="line">    return frame;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CoreTextData</code>类：增加两个可变数分别用来存放文本中的图片和链接,在设置<code>imageArray</code>成员时，我们还会调一个新创建的<code>fillImagePosition</code>方法，用于找到每张图片在绘制时的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;CTFrameParserConfig.h&quot;</span><br><span class="line">#import &lt;CoreText/CoreText.h&gt;</span><br><span class="line"></span><br><span class="line">@interface CoreTextData : NSObject</span><br><span class="line">//绘制需要的CTFrameRef实例</span><br><span class="line">@property (assign, nonatomic) CTFrameRef ctFrame;</span><br><span class="line">//高度</span><br><span class="line">@property (assign, nonatomic) CGFloat height;</span><br><span class="line">//图片信息</span><br><span class="line">@property (strong, nonatomic) NSArray * imageArray;</span><br><span class="line">//链接信息</span><br><span class="line">@property (strong, nonatomic) NSArray * linkArray;</span><br><span class="line">//文本</span><br><span class="line">@property (strong, nonatomic) NSAttributedString *content;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line">#import &quot;CoreTextImageData.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CoreTextData</span><br><span class="line">// CTFrameRef 属于CoreText框架，需要自己手动管理内存。ARC机制在此不在适用，所以需要重写Settter</span><br><span class="line">- (void)setCtFrame:(CTFrameRef)ctFrame &#123;</span><br><span class="line">    if (_ctFrame != ctFrame) &#123;</span><br><span class="line">        if (_ctFrame != nil) &#123;</span><br><span class="line">            CFRelease(_ctFrame);</span><br><span class="line">        &#125;</span><br><span class="line">        CFRetain(ctFrame);</span><br><span class="line">        _ctFrame = ctFrame;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    if (_ctFrame != nil) &#123;</span><br><span class="line">        CFRelease(_ctFrame);</span><br><span class="line">        _ctFrame = nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setImageArray:(NSArray *)imageArray &#123;</span><br><span class="line">    _imageArray = imageArray;</span><br><span class="line">    [self fillImagePosition];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 计算所有图片的位置和尺寸</span><br><span class="line">- (void)fillImagePosition &#123;</span><br><span class="line">    if (self.imageArray.count == 0) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    //获取所有CTLine对象</span><br><span class="line">    NSArray *lines = (NSArray *)CTFrameGetLines(self.ctFrame);</span><br><span class="line">    NSUInteger lineCount = [lines count];</span><br><span class="line">    // 每个CTLine对应的origin</span><br><span class="line">    CGPoint lineOrigins[lineCount];</span><br><span class="line">    // 获取所有origin，第二个参数传入文本的范围，CFRangeMake(0, 0)代表整个CTFrame的范围</span><br><span class="line">    CTFrameGetLineOrigins(self.ctFrame, CFRangeMake(0, 0), lineOrigins);</span><br><span class="line">    </span><br><span class="line">    int imgIndex = 0;</span><br><span class="line">    CoreTextImageData * imageData = self.imageArray[0];</span><br><span class="line">    </span><br><span class="line">    for (int i = 0; i &lt; lineCount; ++i) &#123;</span><br><span class="line">        if (imageData == nil) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        // 当前第 i个 CTLine</span><br><span class="line">        CTLineRef line = (__bridge CTLineRef)lines[i];</span><br><span class="line">        // 获取line当中所有的CTRun对象</span><br><span class="line">        NSArray * runObjArray = (NSArray *)CTLineGetGlyphRuns(line);</span><br><span class="line">        //遍历所有的CTRun对象</span><br><span class="line">        for (id runObj in runObjArray) &#123;</span><br><span class="line">            CTRunRef run = (__bridge CTRunRef)runObj;</span><br><span class="line">            // 获取当前CTRun对象的Attributes</span><br><span class="line">            NSDictionary *runAttributes = (NSDictionary *)CTRunGetAttributes(run);</span><br><span class="line">            // 获取当前CTRun的代理 （因为代理方法中传入了我们需要的图片位置字典）</span><br><span class="line">            CTRunDelegateRef delegate = (__bridge CTRunDelegateRef)[runAttributes valueForKey:(id)kCTRunDelegateAttributeName];</span><br><span class="line">            if (delegate == nil) &#123;</span><br><span class="line">                //判断代理是否存在，不存在则说明当前CTRun不是图片，继续循环查找下一个，存在则继续获取CTRun的各属性值</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            //metDic为CTFrameParser类中解析图片时传入代理的参数</span><br><span class="line">            NSDictionary * metaDic = CTRunDelegateGetRefCon(delegate);</span><br><span class="line">            if (![metaDic isKindOfClass:[NSDictionary class]]) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            CGRect runBounds;</span><br><span class="line">            CGFloat ascent;</span><br><span class="line">            CGFloat descent;</span><br><span class="line">            //CTRunGetTypographicBounds:获取CTRun的参数，第二个Range传入CFRangeMake(0, 0)表示整个CTRun</span><br><span class="line">            runBounds.size.width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &amp;ascent, &amp;descent, NULL);</span><br><span class="line">            //CTRun的高度则为上行高度 + 下行高度，各常用属性详解参考文章</span><br><span class="line">            runBounds.size.height = ascent + descent;</span><br><span class="line">            //CTLineGetOffsetForStringIndex 获取特定Index处字符的偏移量</span><br><span class="line">            CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);</span><br><span class="line">            // CTRun（图片）的横坐标位置为 基础原点(Origin)的x + 偏移量</span><br><span class="line">            runBounds.origin.x = lineOrigins[i].x + xOffset;</span><br><span class="line">            runBounds.origin.y = lineOrigins[i].y;</span><br><span class="line">            //纵坐标为基础原点(Origin)的y值 - 下行高度 （目的是保证图片底部和文字的最底部对齐。也可以不减去descent，此时图片的底部和文字的基线(baseline) 对齐）</span><br><span class="line">            runBounds.origin.y -= descent;</span><br><span class="line">            // 获取当前CTFrame的路径</span><br><span class="line">            CGPathRef pathRef = CTFrameGetPath(self.ctFrame);</span><br><span class="line">            //获取路径的尺寸</span><br><span class="line">            CGRect colRect = CGPathGetBoundingBox(pathRef);</span><br><span class="line">            //相对父视图进行偏移，获取图片相对坐标系的位置</span><br><span class="line">            CGRect delegateBounds = CGRectOffset(runBounds, colRect.origin.x, colRect.origin.y);</span><br><span class="line">            imageData.imagePosition = delegateBounds;</span><br><span class="line">            imgIndex++;</span><br><span class="line">            if (imgIndex == self.imageArray.count) &#123;</span><br><span class="line">                imageData = nil;</span><br><span class="line">                break;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                imageData = self.imageArray[imgIndex];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CoreTextUtils</code>新增类，主要的方法是使用 CTLineGetStringIndexForPosition 函数来获得用户点击的位置与 NSAttributedString 字符串上的位置的对应关系。这样就知道是点击的哪个字符了。然后判断该字符串是否在链接上即可。该 Util 在实现逻辑如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">#import &quot;CoreTextLinkData.h&quot;</span><br><span class="line">#import &quot;CoreTextData.h&quot;</span><br><span class="line"></span><br><span class="line">@interface CoreTextUtils : NSObject</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 获取点击处CoreTextLinkData，如果点击的不是链接，返回空</span><br><span class="line"></span><br><span class="line"> @param view 当前点击所在的View</span><br><span class="line"> @param point 点击位置</span><br><span class="line"> @param data 当前文本信息</span><br><span class="line"> @return 获取点击处CoreTextLinkData，如果点击的不是链接，返回空</span><br><span class="line"> */</span><br><span class="line">+ (CoreTextLinkData *)touchLinkInView:(UIView *)view atPoint:(CGPoint)point data:(CoreTextData *)data;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> @param view 点击所在View</span><br><span class="line"> @param point 点击位置</span><br><span class="line"> @param data 当前文本信息</span><br><span class="line"> @return 点击字符处的index</span><br><span class="line"> */</span><br><span class="line">+ (CFIndex)touchContentOffsetInView:(UIView *)view atPoint:(CGPoint)point data:(CoreTextData *)data;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CoreTextUtils.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CoreTextUtils</span><br><span class="line"></span><br><span class="line">// 检测点击位置是否在链接上</span><br><span class="line">+ (CoreTextLinkData *)touchLinkInView:(UIView *)view atPoint:(CGPoint)point data:(CoreTextData *)data &#123;</span><br><span class="line">    //将点击的位置转换成字符串的偏移量</span><br><span class="line">    CFIndex idx = [self touchContentOffsetInView:view atPoint:point data:data];</span><br><span class="line">    if (idx == -1) &#123;</span><br><span class="line">        //不在文本上</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">    //如果能找到点击处的index，则执行对link的遍历，查看index是否在link的Range范围之内</span><br><span class="line">    CoreTextLinkData * foundLink = [self linkAtIndex:idx linkArray:data.linkArray];</span><br><span class="line">    return foundLink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 将点击的位置转换成字符串的偏移量，如果没有找到，则返回-1</span><br><span class="line">+ (CFIndex)touchContentOffsetInView:(UIView *)view atPoint:(CGPoint)point data:(CoreTextData *)data &#123;</span><br><span class="line">    //获取当前的CTFrameRef实例</span><br><span class="line">    CTFrameRef textFrame = data.ctFrame;</span><br><span class="line">    //获取每一行</span><br><span class="line">    CFArrayRef lines = CTFrameGetLines(textFrame);</span><br><span class="line">    if (!lines) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    //获取总共的行数</span><br><span class="line">    CFIndex count = CFArrayGetCount(lines);</span><br><span class="line">    </span><br><span class="line">    // 获得每一行的origin坐标</span><br><span class="line">    CGPoint origins[count];</span><br><span class="line">    CTFrameGetLineOrigins(textFrame, CFRangeMake(0,0), origins);</span><br><span class="line">    </span><br><span class="line">    // 翻转坐标系</span><br><span class="line">    CGAffineTransform transform =  CGAffineTransformMakeTranslation(0, view.bounds.size.height);</span><br><span class="line">    transform = CGAffineTransformScale(transform, 1.f, -1.f);</span><br><span class="line">    </span><br><span class="line">    CFIndex idx = -1;</span><br><span class="line">    for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        CGPoint linePoint = origins[i];</span><br><span class="line">        CTLineRef line = CFArrayGetValueAtIndex(lines, i);</span><br><span class="line">        // 获得每一行的CGRect信息</span><br><span class="line">        CGRect flippedRect = [self getLineBounds:line point:linePoint];</span><br><span class="line">        CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);</span><br><span class="line">        //如果点击处在当前行的范围之内</span><br><span class="line">        if (CGRectContainsPoint(rect, point)) &#123;</span><br><span class="line">            // 将点击的坐标转换成相对于当前行的坐标</span><br><span class="line">            CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),</span><br><span class="line">                                                point.y-CGRectGetMinY(rect));</span><br><span class="line">            // 获得当前点击坐标对应的字符串偏移，这里特别注意，第二个参数是相对当前行的坐标，不是相对整个frame坐标，故需要之前的转换</span><br><span class="line">            idx = CTLineGetStringIndexForPosition(line, relativePoint);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return idx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取当前行的位置和尺寸，注意这里的返回的坐标都是CoreText坐标，和UIKit的坐标系不同</span><br><span class="line">+ (CGRect)getLineBounds:(CTLineRef)line point:(CGPoint)point &#123;</span><br><span class="line">    CGFloat ascent = 0.0f;</span><br><span class="line">    CGFloat descent = 0.0f;</span><br><span class="line">    CGFloat leading = 0.0f;</span><br><span class="line">    //后面三个参数分别为上行高度、下行高度、行间距的地址</span><br><span class="line">    CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &amp;ascent, &amp;descent, &amp;leading);</span><br><span class="line">    CGFloat height = ascent + descent;</span><br><span class="line">    return CGRectMake(point.x, point.y - descent, width, height);</span><br><span class="line">&#125;</span><br><span class="line">//遍历linkArray，查看点击处是否在link的Range范围之内</span><br><span class="line">+ (CoreTextLinkData *)linkAtIndex:(CFIndex)i linkArray:(NSArray *)linkArray &#123;</span><br><span class="line">    CoreTextLinkData *link = nil;</span><br><span class="line">    for (CoreTextLinkData *data in linkArray) &#123;</span><br><span class="line">        if (NSLocationInRange(i, data.range)) &#123;</span><br><span class="line">            link = data;</span><br><span class="line">            //找到之后直接跳出循环，没有则返回空</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return link;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>CTDisplayView</code>添加对图片点击的支持，我们需要给<code>CTDisplayView</code>类增加用户点击操作的检测函数，在检测函数中，判断当前用户点击的区域是否在图片上，如果在图片上，则触发点击图片的逻辑。苹果提供的<code>UITapGestureRecognizer</code>可以很好的满足我们的要求，所以我们这里用它来检测用户的点击操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    self = [super initWithCoder:aDecoder];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        [self setupEvents];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">- (void)setupEvents &#123;</span><br><span class="line">    UIGestureRecognizer * tapRecognizer =</span><br><span class="line">          [[UITapGestureRecognizer alloc] initWithTarget:self</span><br><span class="line">                    action:@selector(userTapGestureDetected:)];</span><br><span class="line">    tapRecognizer.delegate = self;</span><br><span class="line">    [self addGestureRecognizer:tapRecognizer];</span><br><span class="line">    self.userInteractionEnabled = YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后增加<code>UITapGestureRecognizer</code>的回调函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//点击View时调用</span><br><span class="line">- (void)userTapGestureDetected:(UIGestureRecognizer *)recognizer &#123;</span><br><span class="line">    //获取点击处的位置</span><br><span class="line">    CGPoint point = [recognizer locationInView:self];</span><br><span class="line">    //遍历imageArray，判断点击处是否在图片的Rect范围之内</span><br><span class="line">    for (CoreTextImageData * imageData in self.data.imageArray) &#123;</span><br><span class="line">        // 翻转坐标系，因为imageData中的坐标是CoreText的坐标系</span><br><span class="line">        CGRect imageRect = imageData.imagePosition;</span><br><span class="line">        CGPoint imagePosition = imageRect.origin;</span><br><span class="line">        //此处为计算在UIKit坐标系中图片原点的纵坐标，比较抽象，可画图理解下</span><br><span class="line">        imagePosition.y = self.bounds.size.height - imageRect.origin.y - imageRect.size.height;</span><br><span class="line">        //这个Rect是CoreText坐标转换后的UIKit坐标</span><br><span class="line">        CGRect rect = CGRectMake(imagePosition.x, imagePosition.y, imageRect.size.width, imageRect.size.height);</span><br><span class="line">        // 检测点击位置 Point 是否在rect之内</span><br><span class="line">        if (CGRectContainsPoint(rect, point)) &#123;</span><br><span class="line">            NSLog(@&quot;hit image&quot;);</span><br><span class="line">            // 在这里处理点击后的逻辑</span><br><span class="line">            NSDictionary *userInfo = @&#123; @&quot;imageData&quot;: imageData &#125;;</span><br><span class="line">            [[NSNotificationCenter defaultCenter] postNotificationName:CTDisplayViewImagePressedNotification</span><br><span class="line">                                                                object:self userInfo:userInfo];</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //代码到此处说明点击处不在图片上，下一步检查是否在链接上</span><br><span class="line">    //返回为空的话说明不在，这里不进行处理点击事件，有返回值则发送通知消息给Controller，执行跳转操作</span><br><span class="line">    CoreTextLinkData *linkData = [CoreTextUtils touchLinkInView:self atPoint:point data:self.data];</span><br><span class="line">    if (linkData) &#123;</span><br><span class="line">         NSDictionary *userInfo = @&#123; @&quot;linkData&quot;: linkData &#125;;</span><br><span class="line">        [[NSNotificationCenter defaultCenter] postNotificationName:CTDisplayViewLinkPressedNotification</span><br><span class="line">                                                            object:self userInfo:userInfo];</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在界面上，<code>CTDisplayView</code>通常在<code>UIView</code>的树形层级结构中，一个 UIView 可能是最外层 View Controller 的 View 的孩子的孩子的孩子（如下图所示）。在这种多级层次结构中，很难通过<code>delegate</code>模式将图片点击的事件一层一层往外层传递，所以最好使用<code>NSNotification</code>，来处理图片点击事件。</p>
+</blockquote>
+<p>至此，一个包含了特殊文字处理、图片、链接点击的图文混排程序已经基本实现了。其他细节部分比如图片浏览器，web浏览器、点击图片、链接处理详情等部分比较简单，参考Demo实现即可。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/category/" rel="tag"># category</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/UIStackView/" rel="next" title="编辑器和服务器">
+                <i class="fa fa-chevron-left"></i> 编辑器和服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/OC对象的本质窥探/" rel="prev" title="编辑器和服务器">
+                编辑器和服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreText-框架"><span class="nav-number">1.</span> <span class="nav-text">CoreText 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreText-简介"><span class="nav-number">1.2.</span> <span class="nav-text">CoreText 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreText基本用法"><span class="nav-number">1.3.</span> <span class="nav-text">CoreText基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景知识"><span class="nav-number">1.3.1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字体（Font）"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">字体（Font）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符-Character-和字形-Glyphs"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">字符(Character)和字形(Glyphs)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#坐标系"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">坐标系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CoreText对象模型"><span class="nav-number">1.3.2.</span> <span class="nav-text">CoreText对象模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通常的处理步骤"><span class="nav-number">1.3.3.</span> <span class="nav-text">通常的处理步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoreText示例程序"><span class="nav-number">1.4.</span> <span class="nav-text">CoreText示例程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排版引擎框架"><span class="nav-number">1.4.1.</span> <span class="nav-text">排版引擎框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制排版文件格式"><span class="nav-number">1.4.2.</span> <span class="nav-text">定制排版文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例程序关键代码解读"><span class="nav-number">1.4.3.</span> <span class="nav-text">示例程序关键代码解读</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
