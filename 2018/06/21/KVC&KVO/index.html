@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="category,">
+  <meta name="keywords" content="KVC,KVO,">
 
 
 
@@ -80,9 +80,9 @@
 
 
 <meta name="description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
-<meta name="keywords" content="category">
+<meta name="keywords" content="KVC,KVO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编辑器和服务器">
+<meta property="og:title" content="KVO和KVC底层原理">
 <meta property="og:url" content="http://simplecoder.cn/2018/06/21/KVC&KVO/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
@@ -96,9 +96,9 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw4l4no1f3j30sg0ghwg9.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw4nh8y3dyj31kw0ls0z1.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw4q7smnjdj318f0fy775.jpg">
-<meta property="og:updated_time" content="2018-11-04T19:18:43.589Z">
+<meta property="og:updated_time" content="2018-11-05T03:38:58.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编辑器和服务器">
+<meta name="twitter:title" content="KVO和KVC底层原理">
 <meta name="twitter:description" content="KVO和KVC底层原理我们知道，ObjC有很多类似于Python的动态特性。例如动态类型、动态加载、动态绑定等。依赖于这种动态特性，我们得以实现Objc中许多我们熟知的实用功能，比如键值监听（KVO）与键值编码（KVC）。 键值监听KVO基础回顾KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变。 在ObjC中使用KVO操作常用的方法如下：">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw4ke1208gj30it0680u3.jpg">
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>编辑器和服务器 | Hexo</title>
+  <title>KVO和KVC底层原理 | Hexo</title>
   
 
 
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">编辑器和服务器</h1>
+          <h1 class="post-title" itemprop="name headline">KVO和KVC底层原理</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS进阶</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -460,7 +460,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/category/" rel="tag"># category</a>
+            <a href="/tags/KVC/" rel="tag"># KVC</a>
+          
+            <a href="/tags/KVO/" rel="tag"># KVO</a>
           
         </div>
       
@@ -473,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/深入了解代码块Block/" rel="next" title="编辑器和服务器">
-                <i class="fa fa-chevron-left"></i> 编辑器和服务器
+              <a href="/2018/06/21/CoreText/" rel="next" title="CoreText 框架">
+                <i class="fa fa-chevron-left"></i> CoreText 框架
               </a>
             
           </div>
@@ -483,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/21/分类的实现原理/" rel="prev" title="编辑器和服务器">
-                编辑器和服务器 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/21/iOS新特性及适配/" rel="prev" title="iOS11新特性">
+                iOS11新特性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -562,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -573,7 +575,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -584,7 +586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

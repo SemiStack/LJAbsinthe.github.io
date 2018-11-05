@@ -82,15 +82,15 @@
 <meta name="description" content="分类的实现原理了解分类(Category)的使用场景当我们不改变原有代码为一个类扩展其他功能时我们可以考虑继承这个类进行实现，但是这样一来使用时就必须定义成新实现的子类才能拥有扩展的新功能。如何在不改变原有类的情况下扩展新功能又可以在使用时不必定义新类型呢？这就是分类Category。利用分类，我们就可以在ObjC中动态的为已有类添加新的行为（特别是系统或框架中的类）。 例如下面这段代码，我们为系">
 <meta name="keywords" content="category">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编辑器和服务器">
+<meta property="og:title" content="分类的实现原理">
 <meta property="og:url" content="http://simplecoder.cn/2018/06/21/分类的实现原理/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="分类的实现原理了解分类(Category)的使用场景当我们不改变原有代码为一个类扩展其他功能时我们可以考虑继承这个类进行实现，但是这样一来使用时就必须定义成新实现的子类才能拥有扩展的新功能。如何在不改变原有类的情况下扩展新功能又可以在使用时不必定义新类型呢？这就是分类Category。利用分类，我们就可以在ObjC中动态的为已有类添加新的行为（特别是系统或框架中的类）。 例如下面这段代码，我们为系">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw5evqviuej30q610m7f9.jpg">
-<meta property="og:updated_time" content="2018-11-04T19:17:33.904Z">
+<meta property="og:updated_time" content="2018-11-05T03:41:51.073Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编辑器和服务器">
+<meta name="twitter:title" content="分类的实现原理">
 <meta name="twitter:description" content="分类的实现原理了解分类(Category)的使用场景当我们不改变原有代码为一个类扩展其他功能时我们可以考虑继承这个类进行实现，但是这样一来使用时就必须定义成新实现的子类才能拥有扩展的新功能。如何在不改变原有类的情况下扩展新功能又可以在使用时不必定义新类型呢？这就是分类Category。利用分类，我们就可以在ObjC中动态的为已有类添加新的行为（特别是系统或框架中的类）。 例如下面这段代码，我们为系">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw5evqviuej30q610m7f9.jpg">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>编辑器和服务器 | Hexo</title>
+  <title>分类的实现原理 | Hexo</title>
   
 
 
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">编辑器和服务器</h1>
+          <h1 class="post-title" itemprop="name headline">分类的实现原理</h1>
         
 
         <div class="post-meta">
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS进阶/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS进阶</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -470,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/KVC&KVO/" rel="next" title="编辑器和服务器">
-                <i class="fa fa-chevron-left"></i> 编辑器和服务器
+              <a href="/2018/06/21/数据库/" rel="next" title="数据库基础">
+                <i class="fa fa-chevron-left"></i> 数据库基础
               </a>
             
           </div>
@@ -479,6 +479,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/关联对象/" rel="prev" title="关联对象">
+                关联对象 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -555,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +570,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -577,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
